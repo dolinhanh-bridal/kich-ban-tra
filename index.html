@@ -1,0 +1,253 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>Kịch bản Trà đọc</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Be+Vietnam+Pro:ital,wght@0,400;0,600;1,300&display=swap">
+<style>
+/* Layout: 1 cột — đầu trang tiến độ, chia 3 ngày, mỗi bài 1 thẻ mở ra: trái câu đọc, phải cảnh quay */
+:root{
+  --bg:#f7f3f1; --card:#ffffff; --fg:#2b2422; --muted:#7d6f6a;
+  --accent:#9c6b5a; --line:#e6dcd7; --done:#4f7d5c; --soft:#efe6e2;
+  --display:"Cormorant Garamond",Georgia,serif;
+  --body:"Be Vietnam Pro",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1c1817; --card:#262120; --fg:#f1e9e5; --muted:#a8978f;
+  --accent:#d9a08b; --line:#3a3230; --done:#8bc09a; --soft:#302927; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1c1817; --card:#262120; --fg:#f1e9e5; --muted:#a8978f;
+  --accent:#d9a08b; --line:#3a3230; --done:#8bc09a; --soft:#302927; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.55}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:16px;padding-block:24px 56px;display:flex;flex-direction:column;gap:20px}
+h1{font-family:var(--display);font-weight:600;font-size:32px;line-height:1.1;margin:0}
+.sub{color:var(--muted);font-style:italic;font-weight:300;margin:4px 0 0}
+.bar{height:8px;background:var(--soft);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--done);width:0;transition:width .3s}
+.prog{display:flex;flex-direction:column;gap:6px}
+.prog b{font-variant-numeric:tabular-nums}
+.tips{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:0;list-style:none;display:flex;flex-direction:column;gap:4px}
+.tips b{color:var(--accent)}
+.day{display:flex;flex-direction:column;gap:10px}
+.day h2{font-family:var(--display);font-size:24px;margin:8px 0 0;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.day h2 small{font-family:var(--body);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+details{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+details.is-done{border-color:var(--done)}
+summary{list-style:none;cursor:pointer;padding:12px 16px;display:flex;align-items:center;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.num{font-family:var(--display);font-size:22px;color:var(--accent);min-width:28px;font-variant-numeric:tabular-nums}
+.ttl{flex:1;min-width:0;font-weight:600}
+.ttl span{display:block;font-weight:300;font-style:italic;color:var(--muted);font-size:13px}
+.chk{display:flex;align-items:center;gap:6px;font-size:13px;white-space:nowrap}
+.chk input{accent-color:var(--done);width:18px;height:18px}
+details.is-done .chk{color:var(--done);font-weight:600}
+.cols{display:grid;grid-template-columns:2fr 1fr 1fr;border-top:1px solid var(--line)}
+.blk+.blk{border-left:1px solid var(--line)}
+.blk{min-width:0;padding:12px 16px;display:flex;flex-direction:column;gap:8px}
+.blk p{margin:0}
+.blk .lab{color:var(--accent);font-weight:600}
+.send{display:flex;flex-direction:column;gap:8px}
+.send input{flex:1;min-width:0;font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg)}
+.send button{font:inherit;font-weight:600;padding:8px 16px;border:0;border-radius:8px;background:var(--accent);color:var(--card);cursor:pointer}
+.send button:focus-visible,.send input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.up{align-self:flex-start;font-weight:600;padding:8px 16px;border-radius:8px;background:var(--accent);color:var(--card);text-decoration:none}
+.up:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.fname{font-size:13px;color:var(--muted)}
+.sent{display:flex;align-items:center;gap:6px;cursor:pointer}
+.sent input{accent-color:var(--done);width:18px;height:18px}
+.body{border-top:1px solid var(--line);padding:12px 16px 14px;display:flex;flex-direction:column;gap:8px}
+.body p{margin:0}
+.vay{margin-top:4px;padding-top:10px;border-top:1px dashed var(--line);color:var(--muted)}
+.vay b{color:var(--accent)}
+.rows{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:1.2fr 1fr;border-top:1px dashed var(--line)}
+.row:first-child{border-top:0}
+.row>div{padding:10px 16px;min-width:0}
+.row>div+div{border-left:1px dashed var(--line);background:var(--soft)}
+.lab{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.row i{color:var(--muted);font-weight:300}
+.wait{border:1px dashed var(--line);border-radius:10px;padding:10px 16px;color:var(--muted);font-style:italic;font-weight:300;display:flex;gap:12px;align-items:center}
+.wait .num{opacity:.5}
+.note{font-size:12px;color:var(--muted);font-style:italic}
+@media (max-width:760px){.cols{grid-template-columns:1fr}.blk+.blk{border-left:0;border-top:1px solid var(--line)}}
+@media (max-width:620px){.row{grid-template-columns:1fr}.row>div+div{border-left:0}}
+</style>
+</head><body>
+
+
+<div class="wrap">
+  <header>
+    <h1>Kịch bản Trà đọc</h1>
+    <p class="sub">Clip người nói @fitting.vay.cuoi · 33 bài trong 3 ngày</p>
+  </header>
+
+  <div class="prog">
+    <div>Đã gửi source <b id="pDone">0</b> / <b id="pTotal">33</b> bài</div>
+    <div class="bar"><i id="pBar"></i></div>
+    <div class="note" id="saveNote">Quay xong bài nào: đặt tên file → up lên Drive → tick “Đã gửi”.</div>
+  </div>
+
+  <ul class="tips">
+    <li><b>Đọc:</b> chậm, cười nhẹ, như đang tư vấn khách.</li>
+    <li><b>Quay cảnh:</b> dọc, đủ sáng, giữ máy chắc — <i>mỗi cảnh ≥ 4 giây</i>.</li>
+    <li><b>Váy:</b> ưu tiên đính đá, lấp lánh, phẳng, sạch.</li>
+    <li><b>Đặt tên file:</b> số bài + tên bài <i>(vd: 01 Ship ve tinh)</i>.</li>
+  </ul>
+
+  <div id="days"></div>
+</div>
+
+<script>
+const PER_DAY = 11, TOTAL = 33;
+const BAI = [
+ {id:"ship-tinh", vay:"váy đính đá · váy ren · váy đuôi cá", ten:"Ở tỉnh thuê váy có ship được không?", rows:[
+  ["“Ở tỉnh mà muốn thuê váy cưới bên em thì có ship về được không?”","<b>Cận váy đính đá</b> lấp lánh <i>— cảnh mở đẹp nhất</i>"],
+  ["Được nha chị! Bên em vẫn gửi váy về các tỉnh bình thường ạ.","<b>Tay gấp váy</b> nhẹ nhàng trên bàn"],
+  ["Nhưng phần nhà xe thì bên em thường khuyên các chị tự chọn giúp một nhà xe phù hợp với địa chỉ của mình.","<b>Váy trong túi bọc</b>, tay cầm túi"],
+  ["Tại vì mỗi tỉnh mỗi khác, mỗi nhà xe lại có cách nhận hàng khác nhau. Có chỗ nhận tận nơi, có chỗ lại phải ra bến lấy, nên chị chọn nhà xe nào quen và thuận tiện nhất cho mình là tốt nhất.","<b>3 mẫu váy khác nhau</b>, mỗi mẫu 1 cảnh cận <i>— đính đá · ren · đuôi cá</i>"],
+  ["Sau đó chị gửi thông tin nhà xe cho bên em, bên em sẽ chuẩn bị váy, đóng gói cẩn thận rồi gửi ra cho chị.","<b>Đóng gói:</b> lót giấy → gấp voan → cho vào hộp"],
+  ["Như vậy chị cũng dễ theo dõi hơn, mà chẳng may trong quá trình vận chuyển có vấn đề gì thì mình liên hệ trực tiếp với nhà xe cho nhanh.","<b>Dán băng keo, ghi tên khách</b> lên hộp"],
+  ["Chứ bên em ở đây mà vừa lo váy, vừa lo tìm nhà xe, rồi có gì phát sinh lại phải hỏi qua hỏi lại thì cũng hơi lòng vòng :))","<b>Hộp váy xong</b> đặt cạnh cửa tiệm"],
+  ["Nên các chị ở tỉnh cứ yên tâm nha. Váy bên em chuẩn bị, còn nhà xe mình cùng chủ động chọn một bên cho thuận tiện nhất ạ.","<b>Toàn thân váy đẹp nhất</b> <i>— cảnh kết, quay chậm</i>"]]},
+ {id:"giam-can", vay:"váy corset ôm eo · váy đính đá", ten:"Sắp tới chị còn giảm cân thì váy tính sao?", rows:[
+  ["“Em ơi, sắp tới chị còn giảm cân thì váy tính sao?”","<b>Cận eo váy corset</b> ôm dáng <i>— cảnh mở đẹp nhất</i>"],
+  ["Dạ chị cứ yên tâm ạ :)) Cái này bên em gặp thường xuyên lắm, vì nhiều chị đặt váy xong là bắt đầu bước vào hành trình… giảm cân trước cưới.","<b>Cô dâu thử váy</b>, xoay nhẹ trước gương"],
+  ["Nên số đo lúc chị thử váy ban đầu chưa phải số đo cuối cùng đâu ạ. Nếu chị vẫn đang giảm cân thì gần ngày cưới, bên em sẽ đo lại số đo thực tế của chị rồi mới tiến hành chỉnh váy.","<b>Thước dây đo eo</b> trên váy"],
+  ["Váy sẽ được chỉnh theo cơ thể của chị ở thời điểm mặc chính thức, để lên dáng vừa vặn và đẹp nhất có thể.","<b>Tay ghim kim chỉnh lưng váy</b>"],
+  ["Nên chị cứ yên tâm giảm cân nha, đừng vì sợ váy rộng mà không dám giảm :))","<b>Váy ôm vừa dáng</b>, quay từ eo lên"],
+  ["Chỉ cần nếu chị có kế hoạch giảm khá nhiều thì báo trước với bên em một chút để bên em chủ động theo dõi và sắp xếp thời gian chỉnh váy cho chị.","<b>Thợ chỉnh váy</b> bên máy may"],
+  ["Còn việc hôm nay thử một size, đến ngày cưới nhỏ đi một chút… bên em xử lý được ạ. Miễn là chị đừng báo bên em trước ngày cưới là “chị giảm 10kg rồi em nhé” thì hơi hồi hộp một chút :))","<b>Trà cười</b> <i>— hoặc cận đường may lưng váy</i>"],
+  ["Nói chung phần số đo chị cứ để bên em lo, chị tập trung làm cô dâu thật xinh là được ạ.","<b>Toàn thân váy đẹp nhất</b> <i>— cảnh kết, quay chậm</i>"]]},
+ {id:"khong-mau-hong", vay:"váy lung linh nhất tiệm · váy ren · váy bồng", ten:"Ngành wedding không hề màu hồng", rows:[
+  ["“Ngành wedding không hề màu hồng nha…”","<b>Váy lung linh nhất tiệm</b> dưới đèn <i>— cảnh mở</i>"],
+  ["Nhiều người nhìn vào cứ nghĩ làm wedding chắc lãng mạn lắm: váy cưới, hoa, cô dâu xinh, chụp hình đẹp, ngày nào cũng được sống trong không khí hạnh phúc.","<b>Váy + hoa cưới</b>, cô dâu tạo dáng"],
+  ["Nhưng làm rồi mới biết… phía sau mấy cái đẹp đẹp đó là một đống thứ có thể xảy ra :))","<b>Hậu trường:</b> giá váy dày, kéo váy ra vào"],
+  ["Một chiếc váy nhìn rất đẹp trên ảnh, nhưng để đến được tay cô dâu là cả một quá trình. Đo sai một chút, chỉnh không đúng một chút, giao nhận có vấn đề một chút… là cả team mất ngủ.","<b>Đo · chỉnh · đóng hộp</b> <i>— 3 cảnh ngắn nối nhau</i>"],
+  ["Rồi có những hôm khách đổi lịch, đổi concept, đổi size, đổi đủ thứ vào phút cuối. Có những việc mình đã chuẩn bị rất kỹ rồi nhưng vẫn có những tình huống không ai đoán trước được.","<b>Lấy ra nhiều váy</b> trải trên bàn/giá"],
+  ["Mà đặc biệt nghề wedding là nghề liên quan đến một ngày rất quan trọng của người ta, nên mình không có nhiều cơ hội để “thôi lần sau làm tốt hơn”.","<b>Cô dâu mặc váy</b>, cận gương mặt + váy"],
+  ["Có những lỗi rất nhỏ với mình, nhưng với cô dâu lại là chuyện rất lớn.","<b>Cận chi tiết:</b> hạt đá, đường ren"],
+  ["Nên nếu chỉ nhìn nghề wedding qua những bức ảnh lung linh thì đúng là màu hồng thật.","<b>Váy xoay bồng</b> trong ánh sáng đẹp"],
+  ["Còn đứng ở phía sau rồi mới hiểu… để có một ngày cưới thật đẹp, có rất nhiều người đã phải căng thẳng, chạy deadline và xử lý đủ thứ chuyện mà cô dâu không bao giờ nhìn thấy :))","<b>Hấp/ủi váy</b>, team làm việc buổi tối"],
+  ["Nhưng chắc cũng vì vậy mà làm nghề này lâu rồi vẫn thấy thương nghề.","<b>Tay vuốt nhẹ váy</b> → toàn thân váy <i>— cảnh kết</i>"]]},
+ {id:"cong-thuc-chon-vay", vay:"váy trơn form đẹp · váy hoa 3D · váy ren · váy thân trên đính đá", ten:"Công thức chọn váy cưới đơn giản", rows:[
+  ["“Công thức chọn váy cưới đơn giản ai cũng áp dụng được”","<b>Váy trơn form đẹp</b>, toàn thân <i>— cảnh mở</i>"],
+  ["Một. Form dáng phải đẹp trước. Đừng vội nhìn ren, đá hay hoa. Form váy ôm người đẹp thì dù váy rất đơn giản vẫn sang.","<b>Váy trơn ôm dáng</b>, quay từ eo xuống chân"],
+  ["Hai. Chỉ cần một điểm nhấn. Đã có hoa 3D thì không cần đính đá kín váy. Đã có ren đẹp thì không cần thêm quá nhiều chi tiết.","<b>Cận váy hoa 3D</b> → <b>cận váy ren</b> <i>— 2 mẫu</i>"],
+  ["Ba. Nhấn đúng chỗ mình muốn người ta nhìn. Muốn eo nhỏ thì nhấn vào eo. Muốn thân trên đẹp thì tập trung chi tiết ở thân trên.","<b>Cận eo váy corset</b> → <b>thân trên đính đá</b>"],
+  ["Đừng chỗ nào cũng “xin một tí”, vì cuối cùng… chỗ nào cũng nổi :))","<b>Trà cười</b> <i>— hoặc váy nhiều chi tiết lướt nhanh</i>"],
+  ["Bốn. Cuối cùng mới chọn phụ kiện. Váy đã nhiều chi tiết thì veil, trang sức, tóc nên tiết chế lại.","<b>Voan, trang sức</b> đặt cạnh váy"],
+  ["Nhớ công thức này: form đẹp, cộng một điểm nhấn, cộng đúng tỷ lệ, bằng váy cưới nhìn sang.","<b>Toàn thân váy 1 điểm nhấn</b> <i>— xoay chậm</i>"],
+  ["Không phải cứ càng nhiều chi tiết thì càng đắt tiền. Đôi khi bớt đi một chút mới làm chiếc váy đẹp hơn.","<b>Váy đẹp nhất, tối giản</b> <i>— cảnh kết, quay chậm</i>"]]}
+,
+ {id:"thu-vay-rieng-tu", vay:"váy corset · váy form ôm sát · áo choàng che khi thay váy", ten:"Câu nói điếng người trong phòng thử váy", rows:[
+  ["“Câu nói điếng người trong phòng thử váy: ‘Chị cởi hết đồ ra đi…’” :))",""],
+  ["Khoan nha chị, nghe thì hơi hết hồn nhưng DLA không nói vậy đâu ạ :))",""],
+  ["Thật ra khi đi thử váy cưới, đặc biệt là những mẫu corset hoặc form ôm sát, việc thay váy sẽ cần một chút riêng tư.",""],
+  ["Ở DLA, bên em luôn có áo khoác/áo choàng để che chắn cho chị trong lúc thay váy.",""],
+  ["Stylist sẽ chủ động quay đi để chị thay đồ, không nhìn trực diện hay khiến chị có cảm giác cơ thể mình đang bị quan sát.",""],
+  ["Sau khi chị mặc váy xong, bên em sẽ hướng dẫn chị tự cân chỉnh cơ thể và phần váy theo từng bước, để chị cảm nhận được chiếc váy đang ôm ở đâu, cần điều chỉnh như thế nào và tìm được tư thế thoải mái nhất.",""],
+  ["Khi chị đã sẵn sàng, stylist mới hỗ trợ những phần cần thiết để chiếc váy lên dáng đẹp nhất.",""],
+  ["Vì bên em nghĩ rằng, thử váy cưới đã là một trải nghiệm rất riêng tư rồi.",""],
+  ["Chị không cần phải ngại cơ thể mình. Cũng không cần phải thấy mình đang bị nhìn ngắm.",""],
+  ["DLA chỉ cần biết chiếc váy đang cần được chỉnh ở đâu — chứ không cần phải nhìn cơ thể chị trong lúc chị đang thay đồ.",""],
+  ["Nên nếu lần đầu đi thử váy mà chị hơi ngại, cứ yên tâm nha.",""],
+  ["Chị được che chắn, được tôn trọng và có không gian riêng tư trong suốt quá trình thử váy.",""],
+  ["Vì với DLA, một buổi thử váy đẹp không chỉ là tìm được chiếc váy đẹp…",""],
+  ["mà còn là cảm giác được nâng niu và thoải mái khi mặc nó.",""]]}
+,
+ {id:"tu-chon-vay", vay:"2–3 mẫu váy khác phom (đính đá · ren · trơn) · cận cô dâu ngắm mình trong gương", ten:"Thật sự thích hay bị thuyết phục?", rows:[
+  ["“Không biết mình thật sự thích… hay chỉ đang bị nhân viên thuyết phục?”",""],
+  ["Đây chắc là một trong những nỗi lo khá phổ biến khi đi thử váy cưới.",""],
+  ["Vì đôi khi mình mặc một chiếc váy lên, stylist nói: “Đẹp lắm chị.” “Dáng này rất hợp với chị.” “Chị lấy mẫu này đi.”",""],
+  ["Nghe nhiều quá thì… tự nhiên mình cũng bắt đầu thấy nó đẹp thật :))",""],
+  ["Nhưng ở DLA, bên em không muốn chị chọn váy chỉ vì stylist nói chị hợp.",""],
+  ["Bên em sẽ giúp chị nhìn lại một cách khách quan hơn:",""],
+  ["Chị có thật sự thích chiếc váy này không?",""],
+  ["Chị có thấy mình thoải mái khi mặc nó không?",""],
+  ["Chị có thích mình trong gương không?",""],
+  ["Và quan trọng nhất — nếu không có ai đứng bên cạnh nói chiếc váy này đẹp, chị có vẫn muốn chọn nó không?",""],
+  ["Có những chiếc váy rất đẹp, rất hợp dáng, nhưng chưa chắc là chiếc váy chị yêu thích nhất.",""],
+  ["Và cũng có những chiếc váy ban đầu chị không nghĩ mình sẽ chọn, nhưng khi mặc lên lại thấy: “À, đây mới là mình.”",""],
+  ["Nên stylist ở DLA không phải để quyết định thay chị.",""],
+  ["Bên em chỉ ở đó để giúp chị hiểu rõ hơn về chiếc váy, về phom dáng và về chính mình.",""],
+  ["Chiếc váy cuối cùng vẫn nên là chiếc váy mà chị tự mình chọn — không phải chiếc váy chị được thuyết phục để chọn.",""]]}
+,
+ {id:"mac-8-tieng", vay:"váy đuôi dài/bồng to · váy nhẹ dễ đi lại · cô dâu ngồi, đi, giơ tay khi mặc váy", ten:"Đẹp thì có đẹp… nhưng mặc 8 tiếng?", rows:[
+  ["“Đẹp thì có đẹp… nhưng mặc 8 tiếng chắc em chết.” :))",""],
+  ["Đây là câu mà thật ra cô dâu nên nghĩ đến khi thử váy cưới.",""],
+  ["Vì ngày cưới đâu phải mình mặc váy lên chụp vài tấm hình rồi cởi ra.",""],
+  ["Có khi mình phải mặc chiếc váy đó từ lúc chuẩn bị, làm lễ, chụp hình, di chuyển, tiếp khách… kéo dài cả 6–8 tiếng.",""],
+  ["Nên một chiếc váy cưới đẹp chưa chắc đã là một chiếc váy phù hợp.",""],
+  ["Khi thử váy, các chị đừng chỉ nhìn xem nó có đẹp không. Hãy thử ngồi xuống. Thử đi lại. Thử giơ tay. Thử hít thở thật sâu :))",""],
+  ["Và tự hỏi mình một câu: “Nếu phải mặc chiếc váy này cả ngày, mình có thực sự thoải mái không?”",""],
+  ["Vì ngày cưới của mình đã đủ nhiều thứ phải lo rồi, đừng để đến cuối ngày chỉ còn nhớ… cái váy :))",""],
+  ["Nếu các chị còn câu hỏi nào về việc chọn váy, thử váy hay thuê váy cưới, cứ để lại comment bên dưới, em sẽ giải đáp thêm cho các chị nha.",""]]}
+,
+ {id:"take-care-vay", vay:"váy nhiều lớp, tà dài · váy đính kết nặng · voan dài · cảnh nhân viên chỉnh tà, chỉnh voan cho cô dâu", ten:"Có cần book take care váy không?", rows:[
+  ["“Có cần book take care váy không?”",""],
+  ["Thật ra là có, nhưng không phải cô dâu nào cũng cần.",""],
+  ["Nếu chị có planner, có người nhà hoặc có ekip đã phụ trách việc chỉnh váy cho chị rồi thì thôi, không cần book thêm.",""],
+  ["Nhưng nếu chị nghĩ… “Ôi ngày cưới chắc mình chỉ mặc váy rồi đi thôi mà?”",""],
+  ["Không đâu chị :))",""],
+  ["Váy cưới không phải mặc vào xong là nó tự ngoan.",""],
+  ["Đi vài bước là phải chỉnh tà. Ngồi xuống phải xử lý váy. Đứng lên lại phải kéo tà.",""],
+  ["Chụp hình thì phải chỉnh form cho đẹp. Veil lệch cũng phải có người chỉnh.",""],
+  ["Có những chiếc váy nhiều lớp, tà dài, đính kết nặng… cô dâu tự xử lý khá là bất tiện.",""],
+  ["Mà ngày cưới chị đang bận làm một việc rất quan trọng: Đẹp.",""],
+  ["Chứ không phải vừa đi vừa cúi xuống: “Ủa tà váy của em đâu?” :))",""],
+  ["Nên take care thực ra không phải để chị đẹp hơn.",""],
+  ["Mà là để trong suốt ngày cưới, chị không phải bận tâm đến cái váy của mình nữa.",""],
+  ["Tất nhiên, nếu ekip của chị đã lo được phần này thì không cần book thêm.",""],
+  ["Còn nếu không có ai lo, em khuyên chị nên cân nhắc take care — đặc biệt với những chiếc váy nhiều lớp, tà dài hoặc có nhiều lần thay đổi layout.",""]]}
+];
+
+const FOLDER = "https://drive.google.com/drive/folders/1RnvuQurSwRz4LIJlp2gNhc2iW68w-J7P";
+let st = {}; const opened = new Set();
+try { st = JSON.parse(localStorage.getItem("tra-st") || "{}"); } catch(e) {}
+const isDone = id => !!(st[id] && st[id].done);
+const esc = t => String(t).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function render(){
+  const host = document.getElementById("days"); host.innerHTML = "";
+  for (let d = 0; d < 3; d++){
+    const sec = document.createElement("section"); sec.className = "day";
+    const from = d*PER_DAY, to = from+PER_DAY;
+    const nDone = BAI.slice(from,to).filter(b=>isDone(b.id)).length;
+    sec.innerHTML = `<h2>Ngày ${d+1}<small>${nDone} / ${PER_DAY} đã gửi source</small></h2>`;
+    for (let k = from; k < to; k++){
+      const b = BAI[k], n = String(k+1).padStart(2,"0");
+      if (!b){ const w=document.createElement("div"); w.className="wait";
+        w.innerHTML=`<span class="num">${n}</span>Chờ chị Linh gửi kịch bản`; sec.appendChild(w); continue; }
+            const el = document.createElement("details");
+      if (isDone(b.id)) el.classList.add("is-done");
+      if (opened.has(b.id)) el.open = true;
+      el.addEventListener("toggle", ()=> el.open ? opened.add(b.id) : opened.delete(b.id));
+      el.innerHTML = `<summary><span class="num">${n}</span>
+        <span class="ttl">${b.ten}<span>Bấm để mở</span></span>
+        <span class="chk">${isDone(b.id) ? "✓ Đã gửi" : "Chưa gửi"}</span></summary>
+        <div class="cols"><div class="blk"><div class="lab">1 · Phần đọc</div>${b.rows.map(r=>`<p>${r[0]}</p>`).join("")}</div>
+        <div class="blk"><div class="lab">2 · Váy cần quay</div><p>${b.vay}</p></div>
+        <div class="blk"><div class="lab">3 · Gửi source quay</div>
+          <p class="fname">Đặt tên file: <b>${n} ${b.ten.replace(/[?“”…]/g,"")}</b></p>
+          <a class="up" href="${FOLDER}" target="_blank" rel="noopener">Up source lên Drive ↗</a>
+          <label class="sent"><input type="checkbox" id="s-${b.id}" ${isDone(b.id)?"checked":""}> Đã gửi</label></div></div>`;
+      const cb = el.querySelector(".sent input");
+      cb.addEventListener("change", ()=>save(b.id, cb.checked));
+      sec.appendChild(el);
+    }
+    host.appendChild(sec);
+  }
+  const all = BAI.filter(b=>isDone(b.id)).length;
+  document.getElementById("pDone").textContent = all;
+  document.getElementById("pTotal").textContent = TOTAL;
+  document.getElementById("pBar").style.width = (all/TOTAL*100)+"%";
+}
+
+function save(id, val){
+  st[id] = {done: val};
+  try { localStorage.setItem("tra-st", JSON.stringify(st)); } catch(e) {}
+  render();
+}
+
+render();
+</script>
+
+</body></html>
