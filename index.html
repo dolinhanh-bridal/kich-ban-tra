@@ -247,7 +247,7 @@ const FOLDER = "https://drive.google.com/drive/folders/1RnvuQurSwRz4LIJlp2gNhc2i
 let st = {}; const opened = new Set();
 try { st = JSON.parse(localStorage.getItem("tra-st") || "{}"); } catch(e) {}
 // Clip đã dựng xong (ghi trong trang → ai mở cũng thấy). Thêm id + ngày đăng khi dựng xong.
-const DA_DUNG = {"giam-can":"đăng 8/10", "cong-thuc-chon-vay":"đăng 10/10", "ship-tinh":"chờ chị duyệt", "khong-mau-hong":"chờ chị duyệt"};
+const DA_DUNG = {"giam-can":"đăng 8/10", "cong-thuc-chon-vay":"đăng 10/10", "ship-tinh":"chờ chị duyệt", "khong-mau-hong":"chờ chị duyệt", "thu-vay-rieng-tu":"chờ chị duyệt", "tu-chon-vay":"chờ chị duyệt", "mac-8-tieng":"chờ chị duyệt", "take-care-vay":"chờ chị duyệt", "vay-thao-ta":"chờ chị duyệt", "co-dau-gay":"chờ chị duyệt"};
 const isDone = id => !!(st[id] && st[id].done) || !!DA_DUNG[id];
 const esc = t => String(t).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
