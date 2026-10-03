@@ -2,7 +2,7 @@
 <title>Kịch bản Trà đọc</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Be+Vietnam+Pro:ital,wght@0,400;0,600;1,300&display=swap">
 <style>
-/* Layout: 1 cột — đầu trang tiến độ, chia 3 ngày, mỗi bài 1 thẻ mở ra: trái câu đọc, phải cảnh quay */
+/* Layout: 1 cột — đầu trang tiến độ, chia theo ngày, mỗi bài 1 thẻ mở ra: trái câu đọc, phải cảnh quay */
 :root{
   --bg:#f7f3f1; --card:#ffffff; --fg:#2b2422; --muted:#7d6f6a;
   --accent:#9c6b5a; --line:#e6dcd7; --done:#4f7d5c; --soft:#efe6e2;
@@ -77,11 +77,11 @@ details.is-done .chk{color:var(--done);font-weight:600}
 <div class="wrap">
   <header>
     <h1>Kịch bản Trà đọc</h1>
-    <p class="sub">Clip người nói @fitting.vay.cuoi · 33 bài trong 3 ngày</p>
+    <p class="sub">Clip người nói @fitting.vay.cuoi · 40 bài</p>
   </header>
 
   <div class="prog">
-    <div>Đã gửi source <b id="pDone">0</b> / <b id="pTotal">33</b> bài</div>
+    <div>Đã gửi source <b id="pDone">0</b> / <b id="pTotal">40</b> bài</div>
     <div class="bar"><i id="pBar"></i></div>
     <div class="note" id="saveNote">Quay xong bài nào: đặt tên file → up lên Drive → tick “Đã gửi”.</div>
   </div>
@@ -98,7 +98,7 @@ details.is-done .chk{color:var(--done);font-weight:600}
 </div>
 
 <script>
-const PER_DAY = 11, TOTAL = 33;
+const PER_DAY = 11, TOTAL = 40;
 const BAI = [
  {"id":"ship-tinh","vay":"váy đính đá · váy ren · váy đuôi cá","ten":"Ở tỉnh thuê váy có ship được không?","rows":[["“Ở tỉnh mà muốn thuê váy cưới bên em thì có ship về được không?”","<b>Cận váy đính đá</b> lấp lánh <i>— cảnh mở đẹp nhất</i>"],["Được nha chị! Bên em vẫn gửi váy về các tỉnh bình thường ạ.","<b>Tay gấp váy</b> nhẹ nhàng trên bàn"],["Nhưng phần nhà xe thì bên em thường khuyên các chị tự chọn giúp một nhà xe phù hợp với địa chỉ của mình.","<b>Váy trong túi bọc</b>, tay cầm túi"],["Tại vì mỗi tỉnh mỗi khác, mỗi nhà xe lại có cách nhận hàng khác nhau. Có chỗ nhận tận nơi, có chỗ lại phải ra bến lấy, nên chị chọn nhà xe nào quen và thuận tiện nhất cho mình là tốt nhất.","<b>3 mẫu váy khác nhau</b>, mỗi mẫu 1 cảnh cận <i>— đính đá · ren · đuôi cá</i>"],["Sau đó chị gửi thông tin nhà xe cho bên em, bên em sẽ chuẩn bị váy, đóng gói cẩn thận rồi gửi ra cho chị.","<b>Đóng gói:</b> lót giấy → gấp voan → cho vào hộp"],["Như vậy chị cũng dễ theo dõi hơn, mà chẳng may trong quá trình vận chuyển có vấn đề gì thì mình liên hệ trực tiếp với nhà xe cho nhanh.","<b>Dán băng keo, ghi tên khách</b> lên hộp"],["Chứ bên em ở đây mà vừa lo váy, vừa lo tìm nhà xe, rồi có gì phát sinh lại phải hỏi qua hỏi lại thì cũng hơi lòng vòng :))","<b>Hộp váy xong</b> đặt cạnh cửa tiệm"],["Nên các chị ở tỉnh cứ yên tâm nha. Váy bên em chuẩn bị, còn nhà xe mình cùng chủ động chọn một bên cho thuận tiện nhất ạ.","<b>Toàn thân váy đẹp nhất</b> <i>— cảnh kết, quay chậm</i>"]]},
  {"id":"giam-can","vay":"váy corset ôm eo · váy đính đá","ten":"Sắp tới chị còn giảm cân thì váy tính sao?","rows":[["“Em ơi, sắp tới chị còn giảm cân thì váy tính sao?”","<b>Cận eo váy corset</b> ôm dáng <i>— cảnh mở đẹp nhất</i>"],["Dạ chị cứ yên tâm ạ :)) Cái này bên em gặp thường xuyên lắm, vì nhiều chị đặt váy xong là bắt đầu bước vào hành trình… giảm cân trước cưới.","<b>Cô dâu thử váy</b>, xoay nhẹ trước gương"],["Nên số đo lúc chị thử váy ban đầu chưa phải số đo cuối cùng đâu ạ. Nếu chị vẫn đang giảm cân thì gần ngày cưới, bên em sẽ đo lại số đo thực tế của chị rồi mới tiến hành chỉnh váy.","<b>Thước dây đo eo</b> trên váy"],["Váy sẽ được chỉnh theo cơ thể của chị ở thời điểm mặc chính thức, để lên dáng vừa vặn và đẹp nhất có thể.","<b>Tay ghim kim chỉnh lưng váy</b>"],["Nên chị cứ yên tâm giảm cân nha, đừng vì sợ váy rộng mà không dám giảm :))","<b>Váy ôm vừa dáng</b>, quay từ eo lên"],["Chỉ cần nếu chị có kế hoạch giảm khá nhiều thì báo trước với bên em một chút để bên em chủ động theo dõi và sắp xếp thời gian chỉnh váy cho chị.","<b>Thợ chỉnh váy</b> bên máy may"],["Còn việc hôm nay thử một size, đến ngày cưới nhỏ đi một chút… bên em xử lý được ạ. Miễn là chị đừng báo bên em trước ngày cưới là “chị giảm mười ký rồi em nhé” thì hơi hồi hộp một chút :))","<b>Trà cười</b> <i>— hoặc cận đường may lưng váy</i>"],["Nói chung phần số đo chị cứ để bên em lo, chị tập trung làm cô dâu thật xinh là được ạ.","<b>Toàn thân váy đẹp nhất</b> <i>— cảnh kết, quay chậm</i>"]]},
@@ -220,6 +220,16 @@ const BAI = [
   ["Vì vải đứng dáng nên váy giữ phom rất đẹp. Chân váy xoè tròn, đường eo gọn, lên ảnh nhìn sắc nét và có khí chất.",""],
   ["Tông kem ấm gặp mặt vải bóng nhẹ của mikado là ra ngay vẻ đẹp cổ điển, sang trọng, kiểu cô dâu tối giản mà ai nhìn cũng nhớ.",""],
   ["Chị đã từng thử váy cưới trắng kem chưa? Comment cho em biết nha, em gợi ý vài mẫu cho chị.",""]]}
+,
+ {id:"phong-cach-co-dau", mau:"https://www.tiktok.com/@hangtran.0709/video/7679442218842656020", vay:"mỗi phong cách 1 cảnh: công chúa (váy bồng to, đính đá) · cổ điển (váy ren tay dài, cổ kín) · tối giản (váy trơn mikado) · quyến rũ (váy ôm, đuôi cá, khoét lưng) · tự do (váy nhẹ, voan bay)", ten:"Chị là cô dâu phong cách nào?", rows:[
+  ["“Mỗi cô dâu có một phong cách riêng. Chị thử xem mình thuộc kiểu nào nha.”",""],
+  ["Thứ nhất, cô dâu công chúa. Chân váy bồng thật to, đính đá lấp lánh, bước ra là ai cũng phải trầm trồ. Hợp với chị nào mơ một ngày cưới như cổ tích.",""],
+  ["Thứ hai, cô dâu cổ điển. Ren mềm, tay dài, cổ kín đáo. Nhẹ nhàng, thanh lịch, rất hợp làm lễ nhà thờ hay lễ gia tiên.",""],
+  ["Thứ ba, cô dâu tối giản. Váy trơn, đường cắt gọn, vải đẹp là đủ. Không cần nhiều chi tiết mà vẫn sang, kiểu đẹp càng nhìn càng thấm.",""],
+  ["Thứ tư, cô dâu quyến rũ. Váy ôm sát, đuôi cá, khoét lưng. Khoe trọn đường cong, tự tin và cuốn hút.",""],
+  ["Thứ năm, cô dâu tự do. Váy nhẹ, voan bay, ít lớp, dễ đi lại. Hợp cưới ngoài trời, cưới biển, hay chị nào thích thoải mái.",""],
+  ["Không có phong cách nào đúng hơn phong cách nào. Chỉ có phong cách nào giống chị nhất thôi.",""],
+  ["Chị thấy mình là cô dâu kiểu nào? Comment cho em biết nha, em gợi ý váy đúng phong cách cho chị.",""]]}
 ];
 
 const FOLDER = "https://drive.google.com/drive/folders/1RnvuQurSwRz4LIJlp2gNhc2iW68w-J7P";
@@ -230,11 +240,11 @@ const esc = t => String(t).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&
 
 function render(){
   const host = document.getElementById("days"); host.innerHTML = "";
-  for (let d = 0; d < 3; d++){
+  for (let d = 0; d < Math.ceil(TOTAL/PER_DAY); d++){
     const sec = document.createElement("section"); sec.className = "day";
-    const from = d*PER_DAY, to = from+PER_DAY;
+    const from = d*PER_DAY, to = Math.min(from+PER_DAY, TOTAL);
     const nDone = BAI.slice(from,to).filter(b=>isDone(b.id)).length;
-    sec.innerHTML = `<h2>Ngày ${d+1}<small>${nDone} / ${PER_DAY} đã gửi source</small></h2>`;
+    sec.innerHTML = `<h2>Ngày ${d+1}<small>${nDone} / ${to-from} đã gửi source</small></h2>`;
     for (let k = from; k < to; k++){
       const b = BAI[k], n = String(k+1).padStart(2,"0");
       if (!b){ const w=document.createElement("div"); w.className="wait";
