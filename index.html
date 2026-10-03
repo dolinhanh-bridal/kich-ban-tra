@@ -90,6 +90,7 @@ details.is-done .chk{color:var(--done);font-weight:600}
     <li><b>Đọc:</b> chậm, cười nhẹ, như đang tư vấn khách.</li>
     <li><b>Quay cảnh:</b> dọc, đủ sáng, giữ máy chắc — <i>mỗi cảnh ≥ 4 giây</i>.</li>
     <li><b>Váy:</b> ưu tiên đính đá, lấp lánh, phẳng, sạch.</li>
+    <li><b>Cách đọc:</b> câu đầu là câu mở, đọc như đang hỏi khách · <i>“:))” là chỗ cười, không đọc thành tiếng</i>.</li>
     <li><b>Đặt tên file:</b> số bài + tên bài <i>(vd: 01 Ship ve tinh)</i>.</li>
   </ul>
 
@@ -115,7 +116,7 @@ const BAI = [
   ["Váy sẽ được chỉnh theo cơ thể của chị ở thời điểm mặc chính thức, để lên dáng vừa vặn và đẹp nhất có thể.","<b>Tay ghim kim chỉnh lưng váy</b>"],
   ["Nên chị cứ yên tâm giảm cân nha, đừng vì sợ váy rộng mà không dám giảm :))","<b>Váy ôm vừa dáng</b>, quay từ eo lên"],
   ["Chỉ cần nếu chị có kế hoạch giảm khá nhiều thì báo trước với bên em một chút để bên em chủ động theo dõi và sắp xếp thời gian chỉnh váy cho chị.","<b>Thợ chỉnh váy</b> bên máy may"],
-  ["Còn việc hôm nay thử một size, đến ngày cưới nhỏ đi một chút… bên em xử lý được ạ. Miễn là chị đừng báo bên em trước ngày cưới là “chị giảm 10kg rồi em nhé” thì hơi hồi hộp một chút :))","<b>Trà cười</b> <i>— hoặc cận đường may lưng váy</i>"],
+  ["Còn việc hôm nay thử một size, đến ngày cưới nhỏ đi một chút… bên em xử lý được ạ. Miễn là chị đừng báo bên em trước ngày cưới là “chị giảm mười ký rồi em nhé” thì hơi hồi hộp một chút :))","<b>Trà cười</b> <i>— hoặc cận đường may lưng váy</i>"],
   ["Nói chung phần số đo chị cứ để bên em lo, chị tập trung làm cô dâu thật xinh là được ạ.","<b>Toàn thân váy đẹp nhất</b> <i>— cảnh kết, quay chậm</i>"]]},
  {id:"khong-mau-hong", vay:"váy lung linh nhất tiệm · váy ren · váy bồng", ten:"Ngành wedding không hề màu hồng", rows:[
   ["“Ngành wedding không hề màu hồng nha…”","<b>Váy lung linh nhất tiệm</b> dưới đèn <i>— cảnh mở</i>"],
@@ -130,19 +131,19 @@ const BAI = [
   ["Nhưng chắc cũng vì vậy mà làm nghề này lâu rồi vẫn thấy thương nghề.","<b>Tay vuốt nhẹ váy</b> → toàn thân váy <i>— cảnh kết</i>"]]},
  {id:"cong-thuc-chon-vay", vay:"váy trơn form đẹp · váy hoa 3D · váy ren · váy thân trên đính đá", ten:"Công thức chọn váy cưới đơn giản", rows:[
   ["“Công thức chọn váy cưới đơn giản ai cũng áp dụng được”","<b>Váy trơn form đẹp</b>, toàn thân <i>— cảnh mở</i>"],
-  ["Một. Form dáng phải đẹp trước. Đừng vội nhìn ren, đá hay hoa. Form váy ôm người đẹp thì dù váy rất đơn giản vẫn sang.","<b>Váy trơn ôm dáng</b>, quay từ eo xuống chân"],
-  ["Hai. Chỉ cần một điểm nhấn. Đã có hoa 3D thì không cần đính đá kín váy. Đã có ren đẹp thì không cần thêm quá nhiều chi tiết.","<b>Cận váy hoa 3D</b> → <b>cận váy ren</b> <i>— 2 mẫu</i>"],
-  ["Ba. Nhấn đúng chỗ mình muốn người ta nhìn. Muốn eo nhỏ thì nhấn vào eo. Muốn thân trên đẹp thì tập trung chi tiết ở thân trên.","<b>Cận eo váy corset</b> → <b>thân trên đính đá</b>"],
+  ["Thứ nhất, form dáng phải đẹp trước. Đừng vội nhìn ren, đá hay hoa. Form váy ôm người đẹp thì dù váy rất đơn giản vẫn sang.","<b>Váy trơn ôm dáng</b>, quay từ eo xuống chân"],
+  ["Thứ hai, chỉ cần một điểm nhấn. Đã có hoa 3D thì không cần đính đá kín váy. Đã có ren đẹp thì không cần thêm quá nhiều chi tiết.","<b>Cận váy hoa 3D</b> → <b>cận váy ren</b> <i>— 2 mẫu</i>"],
+  ["Thứ ba, nhấn đúng chỗ mình muốn người ta nhìn. Muốn eo nhỏ thì nhấn vào eo. Muốn thân trên đẹp thì tập trung chi tiết ở thân trên.","<b>Cận eo váy corset</b> → <b>thân trên đính đá</b>"],
   ["Đừng chỗ nào cũng “xin một tí”, vì cuối cùng… chỗ nào cũng nổi :))","<b>Trà cười</b> <i>— hoặc váy nhiều chi tiết lướt nhanh</i>"],
-  ["Bốn. Cuối cùng mới chọn phụ kiện. Váy đã nhiều chi tiết thì veil, trang sức, tóc nên tiết chế lại.","<b>Voan, trang sức</b> đặt cạnh váy"],
+  ["Thứ tư, cuối cùng mới chọn phụ kiện. Váy đã nhiều chi tiết thì voan, trang sức, tóc nên tiết chế lại.","<b>Voan, trang sức</b> đặt cạnh váy"],
   ["Nhớ công thức này: form đẹp, cộng một điểm nhấn, cộng đúng tỷ lệ, bằng váy cưới nhìn sang.","<b>Toàn thân váy 1 điểm nhấn</b> <i>— xoay chậm</i>"],
   ["Không phải cứ càng nhiều chi tiết thì càng đắt tiền. Đôi khi bớt đi một chút mới làm chiếc váy đẹp hơn.","<b>Váy đẹp nhất, tối giản</b> <i>— cảnh kết, quay chậm</i>"]]}
 ,
  {id:"thu-vay-rieng-tu", vay:"váy corset · váy form ôm sát · áo choàng che khi thay váy", ten:"Câu nói điếng người trong phòng thử váy", rows:[
-  ["“Câu nói điếng người trong phòng thử váy: ‘Chị cởi hết đồ ra đi…’” :))",""],
+  ["“Câu nói điếng người trong phòng thử váy: Chị cởi hết đồ ra đi…” :))",""],
   ["Khoan nha chị, nghe thì hơi hết hồn nhưng DLA không nói vậy đâu ạ :))",""],
   ["Thật ra khi đi thử váy cưới, đặc biệt là những mẫu corset hoặc form ôm sát, việc thay váy sẽ cần một chút riêng tư.",""],
-  ["Ở DLA, bên em luôn có áo khoác/áo choàng để che chắn cho chị trong lúc thay váy.",""],
+  ["Ở DLA, bên em luôn có áo khoác, áo choàng để che chắn cho chị trong lúc thay váy.",""],
   ["Stylist sẽ chủ động quay đi để chị thay đồ, không nhìn trực diện hay khiến chị có cảm giác cơ thể mình đang bị quan sát.",""],
   ["Sau khi chị mặc váy xong, bên em sẽ hướng dẫn chị tự cân chỉnh cơ thể và phần váy theo từng bước, để chị cảm nhận được chiếc váy đang ôm ở đâu, cần điều chỉnh như thế nào và tìm được tư thế thoải mái nhất.",""],
   ["Khi chị đã sẵn sàng, stylist mới hỗ trợ những phần cần thiết để chiếc váy lên dáng đẹp nhất.",""],
@@ -151,8 +152,7 @@ const BAI = [
   ["DLA chỉ cần biết chiếc váy đang cần được chỉnh ở đâu — chứ không cần phải nhìn cơ thể chị trong lúc chị đang thay đồ.",""],
   ["Nên nếu lần đầu đi thử váy mà chị hơi ngại, cứ yên tâm nha.",""],
   ["Chị được che chắn, được tôn trọng và có không gian riêng tư trong suốt quá trình thử váy.",""],
-  ["Vì với DLA, một buổi thử váy đẹp không chỉ là tìm được chiếc váy đẹp…",""],
-  ["mà còn là cảm giác được nâng niu và thoải mái khi mặc nó.",""]]}
+  ["Vì với DLA, một buổi thử váy đẹp không chỉ là tìm được chiếc váy đẹp… mà còn là cảm giác được nâng niu và thoải mái khi mặc nó.",""]]}
 ,
  {id:"tu-chon-vay", vay:"2–3 mẫu váy khác phom (đính đá · ren · trơn) · cận cô dâu ngắm mình trong gương", ten:"Thật sự thích hay bị thuyết phục?", rows:[
   ["“Không biết mình thật sự thích… hay chỉ đang bị nhân viên thuyết phục?”",""],
@@ -172,10 +172,10 @@ const BAI = [
   ["Chiếc váy cuối cùng vẫn nên là chiếc váy mà chị tự mình chọn — không phải chiếc váy chị được thuyết phục để chọn.",""]]}
 ,
  {id:"mac-8-tieng", vay:"váy đuôi dài/bồng to · váy nhẹ dễ đi lại · cô dâu ngồi, đi, giơ tay khi mặc váy", ten:"Đẹp thì có đẹp… nhưng mặc 8 tiếng?", rows:[
-  ["“Đẹp thì có đẹp… nhưng mặc 8 tiếng chắc em chết.” :))",""],
+  ["“Đẹp thì có đẹp… nhưng mặc tám tiếng chắc em chết.” :))",""],
   ["Đây là câu mà thật ra cô dâu nên nghĩ đến khi thử váy cưới.",""],
   ["Vì ngày cưới đâu phải mình mặc váy lên chụp vài tấm hình rồi cởi ra.",""],
-  ["Có khi mình phải mặc chiếc váy đó từ lúc chuẩn bị, làm lễ, chụp hình, di chuyển, tiếp khách… kéo dài cả 6–8 tiếng.",""],
+  ["Có khi mình phải mặc chiếc váy đó từ lúc chuẩn bị, làm lễ, chụp hình, di chuyển, tiếp khách… kéo dài cả sáu đến tám tiếng.",""],
   ["Nên một chiếc váy cưới đẹp chưa chắc đã là một chiếc váy phù hợp.",""],
   ["Khi thử váy, các chị đừng chỉ nhìn xem nó có đẹp không. Hãy thử ngồi xuống. Thử đi lại. Thử giơ tay. Thử hít thở thật sâu :))",""],
   ["Và tự hỏi mình một câu: “Nếu phải mặc chiếc váy này cả ngày, mình có thực sự thoải mái không?”",""],
@@ -190,24 +190,24 @@ const BAI = [
   ["Không đâu chị :))",""],
   ["Váy cưới không phải mặc vào xong là nó tự ngoan.",""],
   ["Đi vài bước là phải chỉnh tà. Ngồi xuống phải xử lý váy. Đứng lên lại phải kéo tà.",""],
-  ["Chụp hình thì phải chỉnh form cho đẹp. Veil lệch cũng phải có người chỉnh.",""],
+  ["Chụp hình thì phải chỉnh form cho đẹp. Voan lệch cũng phải có người chỉnh.",""],
   ["Có những chiếc váy nhiều lớp, tà dài, đính kết nặng… cô dâu tự xử lý khá là bất tiện.",""],
   ["Mà ngày cưới chị đang bận làm một việc rất quan trọng: Đẹp.",""],
   ["Chứ không phải vừa đi vừa cúi xuống: “Ủa tà váy của em đâu?” :))",""],
   ["Nên take care thực ra không phải để chị đẹp hơn.",""],
   ["Mà là để trong suốt ngày cưới, chị không phải bận tâm đến cái váy của mình nữa.",""],
   ["Tất nhiên, nếu ekip của chị đã lo được phần này thì không cần book thêm.",""],
-  ["Còn nếu không có ai lo, em khuyên chị nên cân nhắc take care — đặc biệt với những chiếc váy nhiều lớp, tà dài hoặc có nhiều lần thay đổi layout.",""]]}
+  ["Còn nếu không có ai lo, em khuyên chị nên cân nhắc take care — đặc biệt với những chiếc váy nhiều lớp, tà dài hoặc có nhiều lần thay đổi kiểu váy.",""]]}
 ,
  {id:"vay-thao-ta", vay:"váy 2-in-1 gắn/tháo tà · cảnh gắn tà + voan dài · cảnh tháo tà, váy gọn", ten:"1 váy mà kết hợp 2 kiểu", rows:[
-  ["“Chị muốn mặc 1 váy thôi mà kết hợp 2 kiểu.”",""],
+  ["“Chị muốn mặc một váy thôi mà kết hợp hai kiểu.”",""],
   ["Được chứ chị. Một váy mà chơi được hai hệ luôn :))",""],
-  ["Lúc làm lễ thì mình gắn thêm tà dài phía sau, thêm veil vào — bước ra một cái là phải có cảm giác: “À, hôm nay cô này lấy chồng thật rồi.”",""],
+  ["Lúc làm lễ thì mình gắn thêm tà dài phía sau, thêm voan vào — bước ra một cái là phải có cảm giác: “À, hôm nay cô này lấy chồng thật rồi.”",""],
   ["Xong đến lúc đón khách, đi từng bàn… Tháo tà ra. Váy gọn ngay.",""],
   ["Lúc này chị có thể đi lại, cúi xuống, chúc rượu, chụp ảnh với từng bàn… mà không phải vừa đi vừa có một bạn nhân viên ôm cái tà chạy theo phía sau :))",""],
   ["Thế là: làm lễ, cô dâu phiên bản lộng lẫy. Đi bàn, cô dâu phiên bản linh hoạt.",""],
   ["Mà vẫn chỉ một chiếc váy thôi.",""],
-  ["Đây là lý do nếu chị thích kiểu một váy – hai look, mình nên nói ngay từ đầu để chọn đúng mẫu có thể gắn tà và tháo tà.",""],
+  ["Đây là lý do nếu chị thích kiểu một váy hai kiểu, mình nên nói ngay từ đầu để chọn đúng mẫu có thể gắn tà và tháo tà.",""],
   ["Chứ không phải váy nào cũng tháo ra được đâu chị.",""],
   ["Không khéo đang tháo tà lại tháo luôn cả… sự bình tĩnh của cô dâu :))",""],
   ["Chị còn thắc mắc gì về váy cưới thì cứ comment bên dưới, em giải đáp cho chị nha.",""]]}
@@ -217,12 +217,12 @@ const BAI = [
   ["Câu này DLA gặp cũng khá nhiều chị nha :))",""],
   ["Nhưng mà chị đừng nghĩ cứ mặc váy thật bồng, thật nhiều vải là người sẽ đầy đặn hơn. Không phải đâu.",""],
   ["Nếu chị hơi gầy, em thường ưu tiên những mẫu có form tạo khối và có điểm nhấn ở phần thân trên.",""],
-  ["Ví dụ như corset có cấu trúc, cúp ngực vừa phải, draping, 3D hoa hoặc những chi tiết tạo volume nhẹ.",""],
-  ["Phần chân váy thì có thể chọn A-line hoặc ballgown, để tổng thể cơ thể có độ mềm mại và cân đối hơn.",""],
+  ["Ví dụ như corset có cấu trúc, cúp ngực vừa phải, vải xếp nếp, hoa 3D hoặc những chi tiết tạo độ phồng nhẹ.",""],
+  ["Phần chân váy thì có thể chọn chữ A hoặc ballgown, để tổng thể cơ thể có độ mềm mại và cân đối hơn.",""],
   ["Còn nếu chị người rất mảnh mà mặc một chiếc váy ôm sát từ trên xuống dưới, cộng thêm chất liệu trơn và ít chi tiết… thì thôi rồi, người đã mảnh lại càng mảnh :))",""],
   ["Nên với cô dâu gầy, mục tiêu không phải là cố làm cho mình “mập lên”.",""],
   ["Mà là tạo thêm đường cong và độ đầy đặn đúng chỗ.",""],
-  ["Chị còn đang không biết dáng người của mình hợp kiểu váy nào thì cứ comment chiều cao + số đo 3 vòng, em tư vấn thử cho chị nha.",""]]}
+  ["Chị còn đang không biết dáng người của mình hợp kiểu váy nào thì cứ comment chiều cao với số đo ba vòng, em tư vấn thử cho chị nha.",""]]}
 ,
  {id:"vay-thu-cong", vay:"váy couture đính kết cầu kỳ · cận từng viên đá, hạt cườm, hoa 3D · cảnh thợ đính kết bằng tay", ten:"Váy thủ công làm tới cả năm?", rows:[
   ["“Một chiếc váy thủ công có thể làm tới cả năm, chị có tin được không?”",""],
@@ -232,8 +232,7 @@ const BAI = [
   ["Có những phần phải làm ren, cắt từng chi tiết, đính từng viên đá, từng hạt cườm, từng bông hoa… rồi lại kiểm tra, chỉnh sửa từng chút một.",""],
   ["Có những chi tiết nhỏ đến mức… ngồi nhìn gần mới thấy, nhưng lên tổng thể lại quyết định chiếc váy có sang hay không.",""],
   ["Và cái mất thời gian nhất đôi khi không phải là may. Mà là đôi tay của người thợ phải làm đi làm lại từng chi tiết.",""],
-  ["Nên khi chị nhìn một chiếc váy couture và nghĩ: “Ủa, sao cái váy này đắt vậy?”",""],
-  ["thì đôi khi mình đang nhìn thấy thành quả của hàng trăm, thậm chí hàng nghìn giờ làm thủ công mà không nhìn thấy được phía sau.",""],
+  ["Nên khi chị nhìn một chiếc váy couture và nghĩ: “Ủa, sao cái váy này đắt vậy?” Thì đôi khi mình đang nhìn thấy thành quả của hàng trăm, thậm chí hàng nghìn giờ làm thủ công mà không nhìn thấy được phía sau.",""],
   ["Đẹp thì mình nhìn thấy ngay. Nhưng công sức để tạo ra cái đẹp thì thường phải kể chị mới biết.",""],
   ["Chị muốn em làm thêm một video “Vì sao váy cưới thủ công lại đắt?” thì comment “THỦ CÔNG”, em kể tiếp cho chị nha.",""]]}
 ,
@@ -254,7 +253,7 @@ const BAI = [
   ["“Nên đeo phụ kiện như thế nào để không bị… quá tay?”",""],
   ["Nguyên tắc đầu tiên: váy càng cầu kỳ thì phụ kiện càng nên tiết chế.",""],
   ["Nếu váy của chị đã có ren, đính đá, hoa 3D hoặc phần thân trên rất nhiều chi tiết… thì mình không cần đeo thêm một chiếc vòng cổ to đùng nữa đâu chị :))",""],
-  ["Lúc này chỉ cần một đôi khuyên tai phù hợp + kiểu tóc + veil là tổng thể đã đủ đẹp rồi.",""],
+  ["Lúc này chỉ cần một đôi khuyên tai phù hợp, kiểu tóc với voan là tổng thể đã đủ đẹp rồi.",""],
   ["Ngược lại, nếu chị mặc một chiếc váy trơn, tối giản, thì mình có thể dùng phụ kiện để tạo điểm nhấn.",""],
   ["Ví dụ một đôi khuyên tai nổi bật, một chiếc vòng cổ mảnh hoặc một chiếc headpiece.",""],
   ["Quan trọng nhất là đừng chọn từng món riêng lẻ vì thấy nó đẹp. Phải nhìn cả cô dâu từ đầu đến chân.",""],
@@ -265,12 +264,12 @@ const BAI = [
  {id:"vai-rong", mau:"https://www.tiktok.com/@nghi.phuongnp/video/7691365976616783124", vay:"váy tay phồng / vai bồng (cảnh không nên) · váy cổ V, cúp tim, trễ vai chéo · corset thân trên trơn + chân váy chữ A / ballgown xoè to · cận chân váy đính đá, hoa 3D", ten:"Vai rộng mặc váy cưới gì cho cân đối?", rows:[
   ["“Vai rộng mặc váy cưới sao cho không giống… đi tập gym về?”",""],
   ["Cô dâu vai rộng ơi, em hiểu nỗi đau của chị. Thử váy xong nhìn gương, tự hỏi: “Ủa mình đi cưới hay đi thi thể hình vậy?” :))",""],
-  ["Bình tĩnh nha chị. Vai rộng không có lỗi, lỗi là chọn sai váy thôi. Nhớ 4 chiêu này là slay liền.",""],
-  ["Chiêu 1: vai càng “nghèo” chi tiết càng tốt. Tay phồng, vai bồng, đính đá dày ở vai là auto né. Mặc vào vai to gấp đôi, nhìn như đang đeo giáp chuẩn bị ra trận luôn đó chị :))",""],
-  ["Chiêu 2: khoét cổ cho mạnh dạn lên. Cổ V, cúp tim, trễ vai chéo xuống. Đường chéo kéo mắt người ta nhìn dọc xuống, vai tự động “thu nhỏ”.",""],
+  ["Bình tĩnh nha chị. Vai rộng không có lỗi, lỗi là chọn sai váy thôi. Nhớ bốn chiêu này là slay liền.",""],
+  ["Chiêu một: vai càng “nghèo” chi tiết càng tốt. Tay phồng, vai bồng, đính đá dày ở vai là auto né. Mặc vào vai to gấp đôi, nhìn như đang đeo giáp chuẩn bị ra trận luôn đó chị :))",""],
+  ["Chiêu hai: khoét cổ cho mạnh dạn lên. Cổ V, cúp tim, trễ vai chéo xuống. Đường chéo kéo mắt người ta nhìn dọc xuống, vai tự động “thu nhỏ”.",""],
   ["Còn cúp ngực ngang thẳng tắp? Chị ơi, nó kẻ ngay một đường dài sọc ngang qua vai chị luôn. Nghe hơi sai sai đúng không :))",""],
-  ["Chiêu 3: thân trên phải có “xương sống”. Corset đứng form, vải dày vừa phải. Vải mỏng mà ôm sát thì khuyết điểm nào cũng lên sóng, không chừa một cái nào :))",""],
-  ["Chiêu 4: chân váy phải có “uy lực”. Chữ A, ballgown xoè thật đã. Thân dưới đủ đô thì vai tự cân lại, khỏi cần làm gì thêm.",""],
+  ["Chiêu ba: thân trên phải có “xương sống”. Corset đứng form, vải dày vừa phải. Vải mỏng mà ôm sát thì khuyết điểm nào cũng lên sóng, không chừa một cái nào :))",""],
+  ["Chiêu bốn: chân váy phải có “uy lực”. Chữ A, ballgown xoè thật đã. Thân dưới đủ đô thì vai tự cân lại, khỏi cần làm gì thêm.",""],
   ["Đuôi cá ôm sát thì xin phép để dành cho kiếp khác nha chị :))",""],
   ["Bonus: thân trên trơn, đá với hoa 3D dồn hết xuống chân váy. Mắt người ta nhìn xuống dưới, không còn ai rảnh ngồi đo vai chị nữa.",""],
   ["Nói chung vai rộng không phải là khuyết điểm. Đó là bờ vai để chồng dựa vào, chỉ cần chọn đúng váy thôi :))",""],
@@ -278,12 +277,12 @@ const BAI = [
 ,
  {id:"minh-day", mau:"https://www.tiktok.com/@nghi.phuongnp/video/7690493273617468693", vay:"váy cổ cao, ren kín (cảnh không nên) · váy cổ V, cúp tim, cổ vuông, trễ vai · váy nhiều hoa, nơ ở ngực (cảnh “bánh kem”) · corset nhấn eo, thân trên trơn, chi tiết dồn xuống chân váy", ten:"Mình dày, người tròn mặc váy cưới gì?", rows:[
   ["“Mình dày, người tròn: mặc váy cưới sao cho không bị… nhân đôi?”",""],
-  ["Có chị nào giống vầy không: cân nặng có 45 ký, mà chụp hình lên nhìn như 55? Ai cũng tưởng chị ăn nhiều, chứ thật ra là… lồng ngực nó dày :))",""],
-  ["Nhìn nghiêng thấy phần ngực dày, tăng 1 ký mà nhìn như tăng 5 ký. Đó là dáng người tròn, mình dày. Không sao cả, chọn đúng váy là gọn liền.",""],
-  ["Chiêu 1: mở cổ ra cho thân trên được thở. Cổ cao, cổ ren kín mít là auto né, mặc vô vừa bí vừa nặng ký. Chọn cổ V, cúp tim, cổ vuông, trễ vai. Khoe xương quai xanh ra là thân trên nhẹ hẳn.",""],
-  ["Chiêu 2: thân trên càng ít “drama” càng tốt. Hoa 3D to ở ngực, nơ bự, bèo nhún, tay bồng… Cái nào cũng dễ thương, mà gom hết lên ngực thì chị thành… cái bánh kem 3 tầng luôn :))",""],
-  ["Chiêu 3: vải đứng form, không dày không mềm. Ren nổi dày cộm, vải mềm phồng phồng là tự động +3 ký. Chọn vải vừa phải, có độ đứng, ôm nhẹ là thân trên gọn gàng.",""],
-  ["Chiêu 4: phải có eo, phải vừa size. Corset nhấn eo là chân ái. Váy suông rộng thùng thình hay tay hạ vai sâu thì nhìn như đang mặc đồ của… người khác :)) Váy vừa người, đường vai đúng vai là gọn ngay.",""],
+  ["Có chị nào giống vầy không: cân nặng có bốn lăm ký, mà chụp hình lên nhìn như năm lăm? Ai cũng tưởng chị ăn nhiều, chứ thật ra là… lồng ngực nó dày :))",""],
+  ["Nhìn nghiêng thấy phần ngực dày, tăng một ký mà nhìn như tăng năm ký. Đó là dáng người tròn, mình dày. Không sao cả, chọn đúng váy là gọn liền.",""],
+  ["Chiêu một: mở cổ ra cho thân trên được thở. Cổ cao, cổ ren kín mít là auto né, mặc vô vừa bí vừa nặng ký. Chọn cổ V, cúp tim, cổ vuông, trễ vai. Khoe xương quai xanh ra là thân trên nhẹ hẳn.",""],
+  ["Chiêu hai: thân trên càng ít “drama” càng tốt. Hoa 3D to ở ngực, nơ bự, bèo nhún, tay bồng… Cái nào cũng dễ thương, mà gom hết lên ngực thì chị thành… cái bánh kem ba tầng luôn :))",""],
+  ["Chiêu ba: vải đứng form, không dày không mềm. Ren nổi dày cộm, vải mềm phồng phồng là tự động tăng ba ký. Chọn vải vừa phải, có độ đứng, ôm nhẹ là thân trên gọn gàng.",""],
+  ["Chiêu bốn: phải có eo, phải vừa size. Corset nhấn eo là chân ái. Váy suông rộng thùng thình hay tay hạ vai sâu thì nhìn như đang mặc đồ của… người khác :)) Váy vừa người, đường vai đúng vai là gọn ngay.",""],
   ["Bonus: chi tiết dồn xuống eo với chân váy, thân trên để trơn. Mắt người ta nhìn xuống, không ai để ý thân trên nữa.",""],
   ["Nhưng mấy chiêu này chỉ để mình biết cái gì tôn dáng nhất thôi, không phải luật cấm. Chị mặc mà tự tin, thoải mái là đẹp rồi.",""],
   ["Chị nào cũng người tròn, mình dày mà chưa biết hợp dáng nào thì comment “MÌNH DÀY”, em soi dáng cho chị nha.",""]]}
@@ -291,20 +290,20 @@ const BAI = [
  {id:"sua-loi-phoi-do", mau:"https://www.tiktok.com/@nghi.phuongnp/video/7688278029059050773", vay:"1 váy quay trước / sau: trước (dây chuyền to, voan ngắn, tóc xoã, sneaker) · sau (phụ kiện đúng, voan dài, tóc búi, cao gót) · cận trang sức, giày, voan, kẹp tóc", ten:"Sửa lỗi phối đồ cô dâu", rows:[
   ["“Váy đẹp mà nhìn vẫn… thiếu thiếu? Sửa lỗi phối đồ cô dâu nè”",""],
   ["Thuê được chiếc váy xinh xỉu, mặc lên lại thấy thiếu thiếu? Lỗi không phải ở váy đâu chị, mà ở mấy món đi kèm :))",""],
-  ["Lỗi 1: trang sức. Váy cúp ngang thì đeo dây chuyền mảnh. Váy cổ V thì chọn dây chữ V. Váy cổ cao thì bỏ dây chuyền, để khuyên tai làm main.",""],
-  ["Lỗi 2: voan. Voan ngắn cũn cỡn hay dày cộm là che hết váy. Chọn voan dài, mỏng nhẹ để lưng váy vẫn được khoe.",""],
-  ["Lỗi 3: giày. Sneaker, dép lê mà lộ mũi giày là cả bộ váy tụt mood liền :)) Đổi sang cao gót mảnh là sang ngay.",""],
-  ["Lỗi 4: tóc. Váy nhiều chi tiết ở cổ thì búi gọn lên, thêm cái kẹp nhỏ là có điểm nhấn.",""],
+  ["Lỗi một: trang sức. Váy cúp ngang thì đeo dây chuyền mảnh. Váy cổ V thì chọn dây chữ V. Váy cổ cao thì bỏ dây chuyền, để khuyên tai làm main.",""],
+  ["Lỗi hai: voan. Voan ngắn cũn cỡn hay dày cộm là che hết váy. Chọn voan dài, mỏng nhẹ để lưng váy vẫn được khoe.",""],
+  ["Lỗi ba: giày. Sneaker, dép lê mà lộ mũi giày là cả bộ váy tụt mood liền :)) Đổi sang cao gót mảnh là sang ngay.",""],
+  ["Lỗi bốn: tóc. Váy nhiều chi tiết ở cổ thì búi gọn lên, thêm cái kẹp nhỏ là có điểm nhấn.",""],
   ["Vẫn chiếc váy đó mà khác hẳn đúng không chị? Đi fitting nhớ mang giày với phụ kiện theo, DLA ráp thử cả set cho chị.",""],
   ["Chị nào chưa biết váy mình nên phối gì thì comment “PHỐI ĐỒ”, em gợi ý cho nha.",""]]}
 ,
  {id:"lung-dai-chan-ngan", mau:"https://www.tiktok.com/@nghi.phuongnp/video/7687265568776277268", vay:"váy đuôi cá ôm mông (cảnh không nên) · corset eo cao + chân váy chữ A / ballgown xoè từ eo · thân trên có chi tiết, khuyên tai, tóc búi cao · cận cao gót giấu dưới chân váy dài chạm sàn", ten:"Lưng dài chân ngắn mặc váy cưới gì?", rows:[
   ["“Đứng thì thấp, ngồi lại cao hơn người ta? Chị là team lưng dài chân ngắn rồi đó :))”",""],
-  ["Không sao hết, chọn đúng váy cưới là chân tự dài ra liền. Nhớ 4 chiêu này nha.",""],
-  ["Chiêu 1: kéo eo lên cao. Corset có đường eo cao, chân váy bắt đầu xoè ngay từ eo. Eo cao lên bao nhiêu, chân dài thêm bấy nhiêu.",""],
-  ["Chiêu 2: né đuôi cá ôm mông. Đuôi cá xoè từ đầu gối là tố cáo ngay tỉ lệ 50:50 của chị luôn :)) Chọn chữ A hoặc ballgown xoè từ eo, che hết bí mật bên dưới.",""],
-  ["Chiêu 3: kéo mắt người ta lên trên. Thân trên có chi tiết, khuyên tai nổi bật, tóc búi cao. Mắt nhìn lên là quên luôn chuyện đo chân.",""],
-  ["Chiêu 4: giày cao giấu dưới váy. Chân váy dài chạm sàn, bên trong mang cao gót hoặc đế xuồng. Không ai biết, chỉ thấy chị cao ráo thôi :))",""],
+  ["Không sao hết, chọn đúng váy cưới là chân tự dài ra liền. Nhớ bốn chiêu này nha.",""],
+  ["Chiêu một: kéo eo lên cao. Corset có đường eo cao, chân váy bắt đầu xoè ngay từ eo. Eo cao lên bao nhiêu, chân dài thêm bấy nhiêu.",""],
+  ["Chiêu hai: né đuôi cá ôm mông. Đuôi cá xoè từ đầu gối là tố cáo ngay tỉ lệ năm mươi năm mươi của chị luôn :)) Chọn chữ A hoặc ballgown xoè từ eo, che hết bí mật bên dưới.",""],
+  ["Chiêu ba: kéo mắt người ta lên trên. Thân trên có chi tiết, khuyên tai nổi bật, tóc búi cao. Mắt nhìn lên là quên luôn chuyện đo chân.",""],
+  ["Chiêu bốn: giày cao giấu dưới váy. Chân váy dài chạm sàn, bên trong mang cao gót hoặc đế xuồng. Không ai biết, chỉ thấy chị cao ráo thôi :))",""],
   ["Chị nào cũng team lưng dài chân ngắn thì comment “CHÂN DÀI”, em chọn váy giúp chị nha.",""]]}
 ];
 
