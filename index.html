@@ -50,6 +50,7 @@ details.is-done .chk{color:var(--done);font-weight:600}
 .send button:focus-visible,.send input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 .up{align-self:flex-start;font-weight:600;padding:8px 16px;border-radius:8px;background:var(--accent);color:var(--card);text-decoration:none}
 .up:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mau{color:var(--accent);font-weight:600;font-size:13px}
 .fname{font-size:13px;color:var(--muted)}
 .sent{display:flex;align-items:center;gap:6px;cursor:pointer}
 .sent input{accent-color:var(--done);width:18px;height:18px}
@@ -261,7 +262,7 @@ const BAI = [
   ["Nên khi fitting váy, chị có thể mang theo những món phụ kiện mình đã có. DLA sẽ giúp chị nhìn tổng thể và cân lại cho phù hợp.",""],
   ["Chị còn món phụ kiện nào không biết nên đeo hay bỏ thì comment bên dưới, em xem cùng chị nha.",""]]}
 ,
- {id:"vai-rong", vay:"váy tay phồng / vai bồng (cảnh không nên) · váy cổ V, cúp tim, trễ vai chéo · corset thân trên trơn + chân váy chữ A / ballgown xoè to · cận chân váy đính đá, hoa 3D", ten:"Vai rộng mặc váy cưới gì cho cân đối?", rows:[
+ {id:"vai-rong", mau:"https://www.tiktok.com/@nghi.phuongnp/video/7691365976616783124", vay:"váy tay phồng / vai bồng (cảnh không nên) · váy cổ V, cúp tim, trễ vai chéo · corset thân trên trơn + chân váy chữ A / ballgown xoè to · cận chân váy đính đá, hoa 3D", ten:"Vai rộng mặc váy cưới gì cho cân đối?", rows:[
   ["“Vai rộng mặc váy cưới sao cho không giống… đi tập gym về?”",""],
   ["Cô dâu vai rộng ơi, em hiểu nỗi đau của chị. Thử váy xong nhìn gương, tự hỏi: “Ủa mình đi cưới hay đi thi thể hình vậy?” :))",""],
   ["Bình tĩnh nha chị. Vai rộng không có lỗi, lỗi là chọn sai váy thôi. Nhớ 4 chiêu này là slay liền.",""],
@@ -275,7 +276,7 @@ const BAI = [
   ["Nói chung vai rộng không phải là khuyết điểm. Đó là bờ vai để chồng dựa vào, chỉ cần chọn đúng váy thôi :))",""],
   ["Chị nào vai rộng mà chưa biết hợp dáng nào thì comment “VAI RỘNG”, em soi dáng cho chị nha.",""]]}
 ,
- {id:"minh-day", vay:"váy cổ cao, ren kín (cảnh không nên) · váy cổ V, cúp tim, cổ vuông, trễ vai · váy nhiều hoa, nơ ở ngực (cảnh “bánh kem”) · corset nhấn eo, thân trên trơn, chi tiết dồn xuống chân váy", ten:"Mình dày, người tròn mặc váy cưới gì?", rows:[
+ {id:"minh-day", mau:"https://www.tiktok.com/@nghi.phuongnp/video/7690493273617468693", vay:"váy cổ cao, ren kín (cảnh không nên) · váy cổ V, cúp tim, cổ vuông, trễ vai · váy nhiều hoa, nơ ở ngực (cảnh “bánh kem”) · corset nhấn eo, thân trên trơn, chi tiết dồn xuống chân váy", ten:"Mình dày, người tròn mặc váy cưới gì?", rows:[
   ["“Mình dày, người tròn: mặc váy cưới sao cho không bị… nhân đôi?”",""],
   ["Có chị nào giống vầy không: cân nặng có 45 ký, mà chụp hình lên nhìn như 55? Ai cũng tưởng chị ăn nhiều, chứ thật ra là… lồng ngực nó dày :))",""],
   ["Nhìn nghiêng thấy phần ngực dày, tăng 1 ký mà nhìn như tăng 5 ký. Đó là dáng người tròn, mình dày. Không sao cả, chọn đúng váy là gọn liền.",""],
@@ -313,7 +314,7 @@ function render(){
         <span class="ttl">${b.ten}<span>Bấm để mở</span></span>
         <span class="chk">${isDone(b.id) ? "✓ Đã gửi" : "Chưa gửi"}</span></summary>
         <div class="cols"><div class="blk"><div class="lab">1 · Phần đọc</div>${b.rows.map(r=>`<p>${r[0]}</p>`).join("")}</div>
-        <div class="blk"><div class="lab">2 · Váy cần quay</div><p>${b.vay}</p></div>
+        <div class="blk"><div class="lab">2 · Váy cần quay</div><p>${b.vay}</p>${b.mau ? `<a class="mau" href="${b.mau}" target="_blank" rel="noopener">Xem clip mẫu ↗</a>` : ""}</div>
         <div class="blk"><div class="lab">3 · Gửi source quay</div>
           <p class="fname">Đặt tên file: <b>${n} ${b.ten.replace(/[?“”…]/g,"")}</b></p>
           <a class="up" href="${FOLDER}" target="_blank" rel="noopener">Up source lên Drive ↗</a>
