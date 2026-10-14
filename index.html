@@ -66,6 +66,10 @@ details.is-done .chk{color:var(--done);font-weight:600}
 .row>div+div{border-left:1px dashed var(--line);background:var(--soft)}
 .lab{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .row i{color:var(--muted);font-weight:300}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tabs button{font:inherit;font-weight:600;padding:8px 16px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--fg);cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:var(--card)}
+.tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .wait{border:1px dashed var(--line);border-radius:10px;padding:10px 16px;color:var(--muted);font-style:italic;font-weight:300;display:flex;gap:12px;align-items:center}
 .wait .num{opacity:.5}
 .note{font-size:12px;color:var(--muted);font-style:italic}
@@ -77,9 +81,10 @@ details.is-done .chk{color:var(--done);font-weight:600}
 
 <div class="wrap">
   <header>
-    <h1>Kịch bản Trà đọc</h1>
-    <p class="sub">Clip người nói @fitting.vay.cuoi · kịch bản người nói</p>
+    <h1 id="h1">Kịch bản Trà đọc</h1>
+    <p class="sub" id="sub">Clip người nói @fitting.vay.cuoi · tiếng Việt</p>
   </header>
+  <nav class="tabs" role="tablist"><button type="button" id="tab-tra" data-tab="tra">Trà · tiếng Việt</button><button type="button" id="tab-phuong" data-tab="phuong">Phương · tiếng Anh</button></nav>
 
   <div class="prog">
     <div>Đã gửi source <b id="pDone">0</b> / <b id="pTotal">–</b> bài</div>
@@ -91,8 +96,8 @@ details.is-done .chk{color:var(--done);font-weight:600}
     <li><b>Đọc:</b> giọng mềm mại, nhẹ nhàng, như đang tâm sự với khách · <i>câu vui cũng nói nhẹ, không cần gồng</i>.</li>
     <li><b>Quay cảnh:</b> dọc, đủ sáng, giữ máy chắc — <i>mỗi cảnh ≥ 4 giây</i>.</li>
     <li><b>Váy:</b> ưu tiên đính đá, lấp lánh, phẳng, sạch.</li>
-    <li><b>Cách đọc:</b> câu đầu là câu mở, đọc như đang hỏi khách · <i>“:))” là chỗ mỉm cười nhẹ, không đọc thành tiếng</i>.</li>
-    <li><b>Đặt tên file:</b> số bài + tên bài <i>(vd: 01 Ship ve tinh)</i>.</li>
+    <li><b>Cách đọc:</b> <span id="tipDoc"></span></li>
+    <li><b>Đặt tên file:</b> <span id="tipTen"></span></li>
   </ul>
 
   <div id="days"></div>
@@ -164,11 +169,22 @@ const BAI = [
  {"id":"hoi-han-3-dieu","vay":"Thử váy theo ảnh mạng vs lên người thật · váy đuôi dài nặng, cô dâu mệt · lịch váy kín, chốt sát ngày","ten":"Cô dâu hay hối hận nhất 3 điều","rows":[["“Làm ở tiệm váy cưới, em thấy cô dâu hay hối hận nhất 3 điều này.”",""],["Thứ nhất, chọn váy theo ảnh trên mạng mà không thử. Ảnh đẹp vì người mẫu, đèn, góc chụp — lên người mình lại khác hẳn.",""],["Thứ hai, chọn váy quá nặng, đuôi quá dài. Thử 10 phút thì mê, mặc 8 tiếng mới thấy mệt.",""],["Thứ ba, chốt váy quá sát ngày cưới. Không kịp chỉnh, không kịp thử lại, mẫu ưng thì đã có người giữ.",""],["Cô dâu nào cũng muốn đẹp nhất, nhưng đẹp mà thoải mái mới là đẹp lâu.",""],["Chị đã từng hối hận điều gì khi chọn đồ chưa? Kể em nghe nha.",""]]},
  {"id":"trang-tinh-trang-nga","vay":"CÁCH QUAY: Trà đứng giữa khung hình, quay ngang ngực · mỗi câu: nói vế đầu chỉ tay TRÁI, nói vế sau chỉ tay PHẢI · câu mở và câu kết nhìn thẳng máy. CẢNH CHÈN 2 BÊN: da trắng hồng + váy trắng tinh · da ngăm + váy trắng ngà · chụp ngoài trời nắng · tiệc tối đèn vàng + kim sa","ten":"Váy trắng tinh hay trắng ngà?","rows":[["“Váy trắng tinh hay trắng ngà? Chọn sai là da xỉn liền.”",""],["Da trắng hồng – trắng tinh, trắng sữa đều đẹp.",""],["Da ngăm, da vàng – trắng ngà, trắng kem cho da sáng lên.",""],["Da có đốm, không đều màu – tránh trắng tinh quá sáng.",""],["Chụp ngoài trời nắng gắt – trắng ngà đỡ cháy sáng.",""],["Tiệc tối đèn vàng – trắng tinh, kim sa lấp lánh.",""],["Chị lưu lại nha.",""]]}
 ];
-const TOTAL = BAI.length;
+const BAI_EN = [
+ {"id":"en-11","so":"E11","ten":"This dress took almost a year to make","vay":"cận tay thợ đính đá, đính cườm · cận ren cắt tay · cận chi tiết nhỏ · toàn thân váy hoàn thiện","rows":[["“This dress took almost a year to make.”",""],["A handmade, hand-beaded gown is not something you simply sew and finish.",""],["Every piece of lace is cut by hand. Every crystal, every bead, every flower is placed one by one.",""],["Some details are so small, you only see them up close. But together, they decide whether a dress looks truly luxurious.",""],["The longest part is not the sewing. It is the hands of the artisan, working on each detail again and again.",""],["So when you ask, “Why is this dress so expensive?” — you are looking at hundreds of hours of handwork.",""],["Beauty, you see in one second. The work behind it, you only know when someone tells you.",""],["Want to see how our gowns are made? Comment “HANDMADE” and we’ll show you.",""]]},
+ {"id":"en-21","so":"E21","ten":"Five types of bridal lace","vay":"mỗi loại ren 1 cảnh cận, tay vuốt nhẹ: Chantilly (tay dài ren) · Alençon (viền chỉ nổi) · Guipure · ren hoa 3D (quay lúc váy chuyển động) · ren đính cườm (quay dưới đèn)","rows":[["“Choose the wrong lace, and your dress looks cheap.”",""],["Here are five laces you’ll find on bridal gowns.",""],["One — Chantilly lace. Soft, light, with delicate patterns. Perfect for elegant long sleeves.",""],["Two — Alençon lace. Raised cord outlines every flower. Classic and very luxurious.",""],["Three — Guipure lace. No net behind it, the flowers connect to each other. Bold and modern.",""],["Four — 3D floral lace. Flowers rise from the gown and move as you walk. Romantic and dreamy.",""],["Five — beaded and sequined lace. It catches the light and shines all night.",""],["Which lace is your favorite? Tell us in the comments.",""]]},
+ {"id":"en-33","so":"E33","ten":"Ivory mikado gown","vay":"váy trắng kem mikado toàn thân, chuyển động chậm · cận mặt vải dưới ánh sáng ấm · cận chân váy xoè tròn, eo gọn","rows":[["“The most elegant shade of white? It’s not pure white.”",""],["It’s ivory. Soft and warm, it flatters the skin and still feels clean and refined.",""],["And ivory looks its best in mikado.",""],["Mikado is a thick, structured fabric with a gentle sheen. No beading, no lace needed — a beautiful cut is enough.",""],["Because it holds its shape, the skirt stays full and round, the waist stays sharp. In photos, it looks timeless.",""],["Ivory and mikado together — classic, luxurious, and unforgettable.",""],["Would you choose an ivory gown? Tell us in the comments.",""]]},
+ {"id":"en-42","so":"E42","ten":"How to match your veil to your gown","vay":"CÁCH QUAY: Người đọc đứng giữa khung hình, quay ngang ngực · mỗi câu: nói vế đầu chỉ tay TRÁI, nói vế sau chỉ tay PHẢI · câu mở và câu kết nhìn thẳng máy. CẢNH CHÈN 2 BÊN: váy mikado + voan trơn mép gọn · váy lụa, satin + voan mềm rủ · váy ren + voan viền ren · váy đính đá + voan trơn mỏng · váy tuyn + voan tuyn mềm · váy hoa nổi + voan rải hoa","rows":[["“The wrong veil can ruin a perfect dress.”",""],["Mikado gown – a clean veil with a simple edge.",""],["Silk or satin gown – a soft, flowing veil.",""],["Lace gown – a veil with a lace edge.",""],["Beaded gown – a plain, light veil.",""],["Tulle gown – a soft tulle veil.",""],["Floral gown – a veil with a few scattered flowers.",""],["Save this for later.",""]]}
+];
+let CUR = BAI, TOTAL = BAI.length;
 
-const FOLDER = "https://drive.google.com/drive/folders/1RnvuQurSwRz4LIJlp2gNhc2iW68w-J7P";
+const TAB = {
+  tra: { bai: BAI, folder: "https://drive.google.com/drive/folders/1RnvuQurSwRz4LIJlp2gNhc2iW68w-J7P", key: "tra-st", h1: "Kịch bản Trà đọc", sub: "Clip người nói @fitting.vay.cuoi · tiếng Việt", doc: "câu đầu là câu mở, đọc như đang hỏi khách · <i>“:))” là chỗ mỉm cười nhẹ, không đọc thành tiếng</i>.", ten: "số bài + tên bài <i>(vd: 01 Ship ve tinh)</i>." },
+  phuong: { bai: BAI_EN, folder: "https://drive.google.com/drive/folders/16UnMWjI0mBkbpFyXm3i5LMzWcvHb9F4u", key: "tra-st-en", h1: "Kịch bản Phương đọc", sub: "Clip người nói · tiếng Anh · khách Trung Đông", doc: "câu đầu là câu mở, nói chắc, rõ · <i>đọc chậm, tự nhiên, không cần giọng chuẩn bản xứ</i>.", ten: "mã bài + tên bài <i>(vd: E11 handmade)</i>." }
+};
+let FOLDER = TAB.tra.folder, KEY = "tra-st";
 let st = {}; const opened = new Set();
-try { st = JSON.parse(localStorage.getItem("tra-st") || "{}"); } catch(e) {}
+function napSt(){ st = {}; try { st = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e) {} }
+napSt();
 // Clip đã dựng xong (ghi trong trang → ai mở cũng thấy). Thêm id + ngày đăng khi dựng xong.
 const DA_DUNG = {"giam-can":"đăng 4/10", "khong-mau-hong":"đăng 5/10", "cong-thuc-chon-vay":"đăng 6/10", "vay-thao-ta":"đăng 7/10", "ship-tinh":"đăng 8/10", "tu-chon-vay":"đăng 9/10", "thu-vay-rieng-tu":"đăng 10/10", "co-dau-gay":"đăng 11/10", "mac-8-tieng":"đăng 12/10", "take-care-vay":"đăng 13/10"};
 const isDone = id => !!(st[id] && st[id].done) || !!DA_DUNG[id];
@@ -179,10 +195,10 @@ function render(){
   for (let d = 0; d < Math.ceil(TOTAL/PER_DAY); d++){
     const sec = document.createElement("section"); sec.className = "day";
     const from = d*PER_DAY, to = Math.min(from+PER_DAY, TOTAL);
-    const nDone = BAI.slice(from,to).filter(b=>isDone(b.id)).length;
+    const nDone = CUR.slice(from,to).filter(b=>isDone(b.id)).length;
     sec.innerHTML = `<h2>Danh sách kịch bản<small>${nDone} / ${to-from} đã gửi source</small></h2>`;
     for (let k = from; k < to; k++){
-      const b = BAI[k], n = String(k+1).padStart(2,"0");
+      const b = CUR[k], n = b.so || String(k+1).padStart(2,"0");
       if (!b){ const w=document.createElement("div"); w.className="wait";
         w.innerHTML=`<span class="num">${n}</span>Chờ chị Linh gửi kịch bản`; sec.appendChild(w); continue; }
             const el = document.createElement("details");
@@ -204,7 +220,7 @@ function render(){
     }
     host.appendChild(sec);
   }
-  const all = BAI.filter(b=>isDone(b.id)).length;
+  const all = CUR.filter(b=>isDone(b.id)).length;
   document.getElementById("pDone").textContent = all;
   document.getElementById("pTotal").textContent = TOTAL;
   document.getElementById("pBar").style.width = (all/TOTAL*100)+"%";
@@ -212,11 +228,26 @@ function render(){
 
 function save(id, val){
   st[id] = {done: val};
-  try { localStorage.setItem("tra-st", JSON.stringify(st)); } catch(e) {}
+  try { localStorage.setItem(KEY, JSON.stringify(st)); } catch(e) {}
   render();
 }
 
-render();
+function moTab(t){
+  const c = TAB[t] || TAB.tra; t = TAB[t] ? t : "tra";
+  CUR = c.bai; TOTAL = CUR.length; FOLDER = c.folder; KEY = c.key; napSt(); opened.clear();
+  document.getElementById("h1").textContent = c.h1;
+  document.getElementById("sub").textContent = c.sub;
+  document.getElementById("tipDoc").innerHTML = c.doc;
+  document.getElementById("tipTen").innerHTML = c.ten;
+  document.title = c.h1;
+  document.querySelectorAll(".tabs button").forEach(b => b.setAttribute("aria-selected", b.dataset.tab === t ? "true" : "false"));
+  render();
+}
+document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => {
+  try { history.replaceState(null, "", b.dataset.tab === "tra" ? location.pathname : "#phuong"); } catch(e) {}
+  moTab(b.dataset.tab);
+}));
+moTab(location.hash === "#phuong" ? "phuong" : "tra");
 </script>
 
 </body></html>
