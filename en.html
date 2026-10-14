@@ -1,0 +1,164 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>Kịch bản tiếng Anh</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Be+Vietnam+Pro:ital,wght@0,400;0,600;1,300&display=swap">
+<style>
+/* Layout: 1 cột — đầu trang tiến độ, chia theo ngày, mỗi bài 1 thẻ mở ra: trái câu đọc, phải cảnh quay */
+:root{
+  --bg:#f7f3f1; --card:#ffffff; --fg:#2b2422; --muted:#7d6f6a;
+  --accent:#9c6b5a; --line:#e6dcd7; --done:#4f7d5c; --soft:#efe6e2;
+  --display:"Cormorant Garamond",Georgia,serif;
+  --body:"Be Vietnam Pro",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1c1817; --card:#262120; --fg:#f1e9e5; --muted:#a8978f;
+  --accent:#d9a08b; --line:#3a3230; --done:#8bc09a; --soft:#302927; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1c1817; --card:#262120; --fg:#f1e9e5; --muted:#a8978f;
+  --accent:#d9a08b; --line:#3a3230; --done:#8bc09a; --soft:#302927; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.55}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:16px;padding-block:24px 56px;display:flex;flex-direction:column;gap:20px}
+h1{font-family:var(--display);font-weight:600;font-size:32px;line-height:1.1;margin:0}
+.sub{color:var(--muted);font-style:italic;font-weight:300;margin:4px 0 0}
+.bar{height:8px;background:var(--soft);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--done);width:0;transition:width .3s}
+.prog{display:flex;flex-direction:column;gap:6px}
+.prog b{font-variant-numeric:tabular-nums}
+.tips{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px;margin:0;list-style:none;display:flex;flex-direction:column;gap:4px}
+.tips b{color:var(--accent)}
+.day{display:flex;flex-direction:column;gap:10px}
+.day h2{font-family:var(--display);font-size:24px;margin:8px 0 0;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.day h2 small{font-family:var(--body);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+details{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+details.is-done{border-color:var(--done)}
+summary{list-style:none;cursor:pointer;padding:12px 16px;display:flex;align-items:center;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.num{font-family:var(--display);font-size:22px;color:var(--accent);min-width:28px;font-variant-numeric:tabular-nums}
+.ttl{flex:1;min-width:0;font-weight:600}
+.ttl span{display:block;font-weight:300;font-style:italic;color:var(--muted);font-size:13px}
+.chk{display:flex;align-items:center;gap:6px;font-size:13px;white-space:nowrap}
+.chk input{accent-color:var(--done);width:18px;height:18px}
+details.is-done .chk{color:var(--done);font-weight:600}
+.dung{color:var(--done);font-style:normal;font-weight:600}
+.cols{display:grid;grid-template-columns:2fr 1fr 1fr;border-top:1px solid var(--line)}
+.blk+.blk{border-left:1px solid var(--line)}
+.blk{min-width:0;padding:12px 16px;display:flex;flex-direction:column;gap:8px}
+.blk p{margin:0}
+.blk .lab{color:var(--accent);font-weight:600}
+.send{display:flex;flex-direction:column;gap:8px}
+.send input{flex:1;min-width:0;font:inherit;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg)}
+.send button{font:inherit;font-weight:600;padding:8px 16px;border:0;border-radius:8px;background:var(--accent);color:var(--card);cursor:pointer}
+.send button:focus-visible,.send input:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.up{align-self:flex-start;font-weight:600;padding:8px 16px;border-radius:8px;background:var(--accent);color:var(--card);text-decoration:none}
+.up:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mau{color:var(--accent);font-weight:600;font-size:13px}
+.fname{font-size:13px;color:var(--muted)}
+.sent{display:flex;align-items:center;gap:6px;cursor:pointer}
+.sent input{accent-color:var(--done);width:18px;height:18px}
+.body{border-top:1px solid var(--line);padding:12px 16px 14px;display:flex;flex-direction:column;gap:8px}
+.body p{margin:0}
+.vay{margin-top:4px;padding-top:10px;border-top:1px dashed var(--line);color:var(--muted)}
+.vay b{color:var(--accent)}
+.rows{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:1.2fr 1fr;border-top:1px dashed var(--line)}
+.row:first-child{border-top:0}
+.row>div{padding:10px 16px;min-width:0}
+.row>div+div{border-left:1px dashed var(--line);background:var(--soft)}
+.lab{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.row i{color:var(--muted);font-weight:300}
+.wait{border:1px dashed var(--line);border-radius:10px;padding:10px 16px;color:var(--muted);font-style:italic;font-weight:300;display:flex;gap:12px;align-items:center}
+.wait .num{opacity:.5}
+.note{font-size:12px;color:var(--muted);font-style:italic}
+@media (max-width:760px){.cols{grid-template-columns:1fr}.blk+.blk{border-left:0;border-top:1px solid var(--line)}}
+@media (max-width:620px){.row{grid-template-columns:1fr}.row>div+div{border-left:0}}
+</style>
+</head><body>
+
+
+<div class="wrap">
+  <header>
+    <h1>Kịch bản tiếng Anh</h1>
+    <p class="sub">Clip người nói · dành cho khách Trung Đông · đọc tiếng Anh</p>
+  </header>
+
+  <div class="prog">
+    <div>Đã gửi source <b id="pDone">0</b> / <b id="pTotal">–</b> bài</div>
+    <div class="bar"><i id="pBar"></i></div>
+    <div class="note" id="saveNote">Quay xong bài nào: đặt tên file → up lên Drive → tick “Đã gửi”.</div>
+  </div>
+
+  <ul class="tips">
+    <li><b>Đọc:</b> giọng mềm mại, nhẹ nhàng, như đang tâm sự với khách · <i>câu vui cũng nói nhẹ, không cần gồng</i>.</li>
+    <li><b>Quay cảnh:</b> dọc, đủ sáng, giữ máy chắc — <i>mỗi cảnh ≥ 4 giây</i>.</li>
+    <li><b>Váy:</b> ưu tiên đính đá, lấp lánh, phẳng, sạch.</li>
+    <li><b>Cách đọc:</b> câu đầu là câu mở, nói chắc, rõ · <i>đọc chậm, tự nhiên, không cần giọng chuẩn bản xứ</i>.</li>
+    <li><b>Đặt tên file:</b> mã bài + tên bài <i>(vd: E11 handmade)</i>.</li>
+  </ul>
+
+  <div id="days"></div>
+</div>
+
+<script>
+const PER_DAY = 100000;
+const BAI = [
+ {"id":"en-11","so":"E11","ten":"This dress took almost a year to make","vay":"cận tay thợ đính đá, đính cườm · cận ren cắt tay · cận chi tiết nhỏ · toàn thân váy hoàn thiện","rows":[["“This dress took almost a year to make.”",""],["A handmade, hand-beaded gown is not something you simply sew and finish.",""],["Every piece of lace is cut by hand. Every crystal, every bead, every flower is placed one by one.",""],["Some details are so small, you only see them up close. But together, they decide whether a dress looks truly luxurious.",""],["The longest part is not the sewing. It is the hands of the artisan, working on each detail again and again.",""],["So when you ask, “Why is this dress so expensive?” — you are looking at hundreds of hours of handwork.",""],["Beauty, you see in one second. The work behind it, you only know when someone tells you.",""],["Want to see how our gowns are made? Comment “HANDMADE” and we’ll show you.",""]]},
+ {"id":"en-21","so":"E21","ten":"Five types of bridal lace","vay":"mỗi loại ren 1 cảnh cận, tay vuốt nhẹ: Chantilly (tay dài ren) · Alençon (viền chỉ nổi) · Guipure · ren hoa 3D (quay lúc váy chuyển động) · ren đính cườm (quay dưới đèn)","rows":[["“Choose the wrong lace, and your dress looks cheap.”",""],["Here are five laces you’ll find on bridal gowns.",""],["One — Chantilly lace. Soft, light, with delicate patterns. Perfect for elegant long sleeves.",""],["Two — Alençon lace. Raised cord outlines every flower. Classic and very luxurious.",""],["Three — Guipure lace. No net behind it, the flowers connect to each other. Bold and modern.",""],["Four — 3D floral lace. Flowers rise from the gown and move as you walk. Romantic and dreamy.",""],["Five — beaded and sequined lace. It catches the light and shines all night.",""],["Which lace is your favorite? Tell us in the comments.",""]]},
+ {"id":"en-33","so":"E33","ten":"Ivory mikado gown","vay":"váy trắng kem mikado toàn thân, chuyển động chậm · cận mặt vải dưới ánh sáng ấm · cận chân váy xoè tròn, eo gọn","rows":[["“The most elegant shade of white? It’s not pure white.”",""],["It’s ivory. Soft and warm, it flatters the skin and still feels clean and refined.",""],["And ivory looks its best in mikado.",""],["Mikado is a thick, structured fabric with a gentle sheen. No beading, no lace needed — a beautiful cut is enough.",""],["Because it holds its shape, the skirt stays full and round, the waist stays sharp. In photos, it looks timeless.",""],["Ivory and mikado together — classic, luxurious, and unforgettable.",""],["Would you choose an ivory gown? Tell us in the comments.",""]]},
+ {"id":"en-42","so":"E42","ten":"How to match your veil to your gown","vay":"CÁCH QUAY: Trà đứng giữa khung hình, quay ngang ngực · mỗi câu: nói vế đầu chỉ tay TRÁI, nói vế sau chỉ tay PHẢI · câu mở và câu kết nhìn thẳng máy. CẢNH CHÈN 2 BÊN: váy mikado + voan trơn mép gọn · váy lụa, satin + voan mềm rủ · váy ren + voan viền ren · váy đính đá + voan trơn mỏng · váy tuyn + voan tuyn mềm · váy hoa nổi + voan rải hoa","rows":[["“The wrong veil can ruin a perfect dress.”",""],["Mikado gown – a clean veil with a simple edge.",""],["Silk or satin gown – a soft, flowing veil.",""],["Lace gown – a veil with a lace edge.",""],["Beaded gown – a plain, light veil.",""],["Tulle gown – a soft tulle veil.",""],["Floral gown – a veil with a few scattered flowers.",""],["Save this for later.",""]]}
+];
+const TOTAL = BAI.length;
+
+const FOLDER = "https://drive.google.com/drive/folders/16UnMWjI0mBkbpFyXm3i5LMzWcvHb9F4u";
+let st = {}; const opened = new Set();
+try { st = JSON.parse(localStorage.getItem("tra-st-en") || "{}"); } catch(e) {}
+// Clip đã dựng xong (ghi trong trang → ai mở cũng thấy). Thêm id + ngày đăng khi dựng xong.
+const DA_DUNG = {"giam-can":"đăng 4/10", "khong-mau-hong":"đăng 5/10", "cong-thuc-chon-vay":"đăng 6/10", "vay-thao-ta":"đăng 7/10", "ship-tinh":"đăng 8/10", "tu-chon-vay":"đăng 9/10", "thu-vay-rieng-tu":"đăng 10/10", "co-dau-gay":"đăng 11/10", "mac-8-tieng":"đăng 12/10", "take-care-vay":"đăng 13/10"};
+const isDone = id => !!(st[id] && st[id].done) || !!DA_DUNG[id];
+const esc = t => String(t).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function render(){
+  const host = document.getElementById("days"); host.innerHTML = "";
+  for (let d = 0; d < Math.ceil(TOTAL/PER_DAY); d++){
+    const sec = document.createElement("section"); sec.className = "day";
+    const from = d*PER_DAY, to = Math.min(from+PER_DAY, TOTAL);
+    const nDone = BAI.slice(from,to).filter(b=>isDone(b.id)).length;
+    sec.innerHTML = `<h2>Danh sách kịch bản<small>${nDone} / ${to-from} đã gửi source</small></h2>`;
+    for (let k = from; k < to; k++){
+      const b = BAI[k], n = b.so || String(k+1).padStart(2,"0");
+      if (!b){ const w=document.createElement("div"); w.className="wait";
+        w.innerHTML=`<span class="num">${n}</span>Chờ chị Linh gửi kịch bản`; sec.appendChild(w); continue; }
+            const el = document.createElement("details");
+      if (isDone(b.id)) el.classList.add("is-done");
+      if (opened.has(b.id)) el.open = true;
+      el.addEventListener("toggle", ()=> el.open ? opened.add(b.id) : opened.delete(b.id));
+      el.innerHTML = `<summary><span class="num">${n}</span>
+        <span class="ttl">${b.ten}<span>${DA_DUNG[b.id] ? `<b class="dung">🎬 Đã dựng clip · ${DA_DUNG[b.id]}</b>` : "Bấm để mở"}</span></span>
+        <span class="chk">${isDone(b.id) ? "✓ Đã gửi" : "Chưa gửi"}</span></summary>
+        <div class="cols"><div class="blk"><div class="lab">1 · Phần đọc</div>${b.rows.map(r=>`<p>${r[0]}</p>`).join("")}</div>
+        <div class="blk"><div class="lab">2 · Váy cần quay</div><p>${b.vay}</p>${b.mau ? `<a class="mau" href="${b.mau}" target="_blank" rel="noopener">Xem clip mẫu ↗</a>` : ""}</div>
+        <div class="blk"><div class="lab">3 · Gửi source quay</div>
+          <p class="fname">Đặt tên file: <b>${n} ${b.ten.replace(/[?“”…]/g,"")}</b></p>
+          <a class="up" href="${FOLDER}" target="_blank" rel="noopener">Up source lên Drive ↗</a>
+          <label class="sent"><input type="checkbox" id="s-${b.id}" ${isDone(b.id)?"checked":""}> Đã gửi</label></div></div>`;
+      const cb = el.querySelector(".sent input");
+      cb.addEventListener("change", ()=>save(b.id, cb.checked));
+      sec.appendChild(el);
+    }
+    host.appendChild(sec);
+  }
+  const all = BAI.filter(b=>isDone(b.id)).length;
+  document.getElementById("pDone").textContent = all;
+  document.getElementById("pTotal").textContent = TOTAL;
+  document.getElementById("pBar").style.width = (all/TOTAL*100)+"%";
+}
+
+function save(id, val){
+  st[id] = {done: val};
+  try { localStorage.setItem("tra-st-en", JSON.stringify(st)); } catch(e) {}
+  render();
+}
+
+render();
+</script>
+
+</body></html>
