@@ -84,7 +84,7 @@ details.is-done .chk{color:var(--done);font-weight:600}
     <h1 id="h1">Kịch bản Trà đọc</h1>
     <p class="sub" id="sub">Clip người nói @fitting.vay.cuoi · tiếng Việt</p>
   </header>
-  <nav class="tabs" role="tablist"><button type="button" id="tab-tra" data-tab="tra">Trà · tiếng Việt</button><button type="button" id="tab-phuong" data-tab="phuong">Phương · tiếng Anh</button></nav>
+  <nav class="tabs" role="tablist"><button type="button" id="tab-tra" data-tab="tra">Trà · tiếng Việt</button><button type="button" id="tab-phuong" data-tab="phuong">Phương · DLA</button><button type="button" id="tab-phuongnu" data-tab="phuongnu">Phương · Nu</button></nav>
 
   <div class="prog">
     <div>Đã gửi source <b id="pDone">0</b> / <b id="pTotal">–</b> bài</div>
@@ -188,11 +188,14 @@ const BAI_EN = [
  {"id":"en-58","so":"E58","ten":"Match your shoes to your dress","vay":"CÁCH QUAY: Người đọc đứng giữa khung hình, quay ngang ngực · mỗi câu: nói vế đầu chỉ tay TRÁI, nói vế sau chỉ tay PHẢI · câu mở và câu kết nhìn thẳng máy. CẢNH CHÈN 2 BÊN: váy chạm sàn + cao gót mũi tròn · đuôi dài + gót chắc · đuôi cá + gót nhọn vừa · váy đính đá + giày satin trơn","rows":[["“The wrong shoes, and you’ll cry by midnight.”",""],["Floor-length gown – comfortable round-toe heels.",""],["Long train – stable heels, not too thin.",""],["Mermaid gown – medium pointed heels.",""],["Beaded gown – simple satin shoes.",""],["Save this before you shop.",""]]},
  {"id":"en-61","so":"E61","ten":"3 things brides regret most","vay":"cận điện thoại xem ảnh váy · cô dâu ngồi, đi lại trong váy · cận váy đẹp","rows":[["“Brides told us they regret these 3 things the most.”",""],["One — choosing a dress only from photos, without checking the details.",""],["Two — forgetting comfort. A beautiful dress you can’t move in is a long night.",""],["Three — waiting too long. The dress they loved was no longer available.",""],["Don’t let these happen to you.",""]]}
 ];
+const BAI_NU = [
+];
 let CUR = BAI, TOTAL = BAI.length;
 
 const TAB = {
   tra: { bai: BAI, folder: "https://drive.google.com/drive/folders/1RnvuQurSwRz4LIJlp2gNhc2iW68w-J7P", key: "tra-st", h1: "Kịch bản Trà đọc", sub: "Clip người nói @fitting.vay.cuoi · tiếng Việt", doc: "câu đầu là câu mở, đọc như đang hỏi khách · <i>“:))” là chỗ mỉm cười nhẹ, không đọc thành tiếng</i>.", ten: "số bài + tên bài <i>(vd: 01 Ship ve tinh)</i>." },
-  phuong: { bai: BAI_EN, folder: "https://drive.google.com/drive/folders/16UnMWjI0mBkbpFyXm3i5LMzWcvHb9F4u", key: "tra-st-en", h1: "Kịch bản Phương đọc", sub: "Clip người nói · tiếng Anh · khách Trung Đông", doc: "câu đầu là câu mở, nói chắc, rõ · <i>đọc chậm, tự nhiên, không cần giọng chuẩn bản xứ</i>. <b>Quay xong bài nào: up source lên Drive rồi tick “Đã gửi” ở bài đó.</b>", ten: "mã bài + tên bài <i>(vd: E11 handmade)</i>." }
+  phuong: { bai: BAI_EN, folder: "https://drive.google.com/drive/folders/16UnMWjI0mBkbpFyXm3i5LMzWcvHb9F4u", key: "tra-st-en", h1: "Kịch bản Phương · DLA", sub: "Clip người nói · tiếng Anh · váy cưới Dolinhanh · khách Trung Đông", doc: "câu đầu là câu mở, nói chắc, rõ · <i>đọc chậm, tự nhiên, không cần giọng chuẩn bản xứ</i>. <b>Quay xong bài nào: up source lên Drive rồi tick “Đã gửi” ở bài đó.</b>", ten: "mã bài + tên bài <i>(vd: E11 handmade)</i>." },
+  phuongnu: { bai: BAI_NU, folder: "https://drive.google.com/drive/folders/18c296RkD219aobN0fwsRG9EUdeQDH-vm", key: "tra-st-nu", h1: "Kịch bản Phương · Nupakachi", sub: "Clip người nói · tiếng Anh · Nupakachi Photography", doc: "câu đầu là câu mở, nói chắc, rõ · <i>đọc chậm, tự nhiên</i>. <b>Quay xong bài nào: up source lên Drive rồi tick “Đã gửi” ở bài đó.</b>", ten: "mã bài + tên bài <i>(vd: N01 ...)</i>." },
 };
 let FOLDER = TAB.tra.folder, KEY = "tra-st";
 let st = {}; const opened = new Set();
@@ -236,7 +239,8 @@ function render(){
   const all = CUR.filter(b=>isDone(b.id)).length;
   document.getElementById("pDone").textContent = all;
   document.getElementById("pTotal").textContent = TOTAL;
-  document.getElementById("pBar").style.width = (all/TOTAL*100)+"%";
+  document.getElementById("pBar").style.width = (TOTAL ? all/TOTAL*100 : 0)+"%";
+  if (!TOTAL) host.innerHTML = '<div class="wait">Chưa có kịch bản — bài nào được duyệt sẽ hiện ở đây.</div>';
 }
 
 function save(id, val){
@@ -257,10 +261,10 @@ function moTab(t){
   render();
 }
 document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => {
-  try { history.replaceState(null, "", b.dataset.tab === "tra" ? location.pathname : "#phuong"); } catch(e) {}
+  try { history.replaceState(null, "", b.dataset.tab === "tra" ? location.pathname : (b.dataset.tab === "phuongnu" ? "#phuong-nu" : "#phuong")); } catch(e) {}
   moTab(b.dataset.tab);
 }));
-moTab(location.hash === "#phuong" ? "phuong" : "tra");
+moTab(location.hash === "#phuong-nu" ? "phuongnu" : (location.hash === "#phuong" ? "phuong" : "tra"));
 </script>
 
 </body></html>
