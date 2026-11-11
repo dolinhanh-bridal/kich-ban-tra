@@ -30,6 +30,8 @@ h1{font-family:var(--display);font-weight:600;font-size:32px;line-height:1.1;mar
 .day h2 small{font-family:var(--body);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
 details{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
 details.is-done{border-color:var(--done)}
+details.is-doc{opacity:.55}
+details.is-doc .ttl{text-decoration:line-through;text-decoration-thickness:1.5px}
 summary{list-style:none;cursor:pointer;padding:12px 16px;display:flex;align-items:center;gap:12px}
 summary::-webkit-details-marker{display:none}
 summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
@@ -354,7 +356,9 @@ function napSt(){ st = {}; try { st = JSON.parse(localStorage.getItem(KEY) || "{
 napSt();
 // Clip đã dựng xong (ghi trong trang → ai mở cũng thấy). Thêm id + ngày đăng khi dựng xong.
 const DA_DUNG = {"giam-can":"đăng 4/10", "khong-mau-hong":"đăng 5/10", "cong-thuc-chon-vay":"đăng 6/10", "vay-thao-ta":"đăng 7/10", "ship-tinh":"đăng 8/10", "tu-chon-vay":"đăng 9/10", "thu-vay-rieng-tu":"đăng 10/10", "co-dau-gay":"đăng 11/10", "mac-8-tieng":"đăng 12/10", "take-care-vay":"đăng 13/10"};
-const isDone = id => !!(st[id] && st[id].done) || !!DA_DUNG[id];
+// Bài đã quay + up Drive (Claude kiểm Drive 11/11/2026) → gạch đi.
+const DA_DOC = new Set(["ship-tinh", "giam-can", "khong-mau-hong", "cong-thuc-chon-vay", "thu-vay-rieng-tu", "tu-chon-vay", "mac-8-tieng", "take-care-vay", "vay-thao-ta", "co-dau-gay", "vay-thu-cong", "trai-nghiem-khach", "phu-kien", "vai-rong", "minh-day", "sua-loi-phoi-do", "lung-dai-chan-ngan", "nam-kieu-co-vay", "mat-tron", "eo-banh-mi", "ren-thu-dong", "khong-can-che-khuyet-diem", "thu-vay-mat-moc", "dau-tu-ngay-cuoi", "nho-nhan", "qua-tao", "biet-dang-minh", "than-thai", "anh-tren-mang", "bai-toan-ti-le", "ru-ai-di-thu-vay", "dep-khong-can-co", "trang-kem-mikado", "phong-cach-co-dau", "hang-vay-the-gioi", "chon-dung-la-xinh", "nam-chiec-vay", "khong-loi-mot", "vai-xuoi", "ba-loi-mat-sang", "cong-thuc-phu-kien", "cong-thuc-voan", "thue-vay-6-buoc", "chot-vay-le", "giu-vay-dep", "mang-gi-di-thu", "thu-lan-hai", "thue-hay-may", "cong-thuc-dang-nguoi", "cong-thuc-chieu-cao", "cong-thuc-noi-cuoi", "cong-thuc-gio-cuoi", "cong-thuc-toc", "cong-thuc-hoa", "cong-thuc-vest", "co-dau-bau", "cuoi-nang-nong", "cong-thuc-giay", "hoi-truoc-khi-coc", "thu-bao-nhieu-vay", "hoi-han-3-dieu", "trang-tinh-trang-nga", "t-02", "t-03", "t-04", "t-05", "t-06", "t-07", "t-09", "t-10", "t-11", "t-12", "t-13", "t-14", "t-16", "t-31", "t-33", "en-11", "en-21", "en-33", "en-42", "en-04", "en-13", "en-18", "en-24", "en-28", "en-29", "en-30", "en-32", "en-40", "en-52", "en-54", "en-61", "us-01", "us-02", "us-03", "us-06", "us-08", "us-09", "d-49", "d-39", "d-25", "d-10", "d-15", "d-26", "d-20", "d-17", "d-19", "d-27", "us-13", "us-14", "us-23", "us-24", "us-27", "us-29", "us-30", "us-31"]);
+const isDone = id => DA_DOC.has(id) || !!(st[id] && st[id].done) || !!DA_DUNG[id];
 const SUA_KEY = "kb-sua";
 function docSua(){ try { return JSON.parse(localStorage.getItem(SUA_KEY) || "{}") || {}; } catch(e) { return {}; } }
 function ghiSua(o){ try { localStorage.setItem(SUA_KEY, JSON.stringify(o)); } catch(e) {} }
@@ -373,11 +377,12 @@ function render(){
         w.innerHTML=`<span class="num">${n}</span>Chờ chị Linh gửi kịch bản`; sec.appendChild(w); continue; }
             const el = document.createElement("details");
       if (isDone(b.id)) el.classList.add("is-done");
+      if (DA_DOC.has(b.id)) el.classList.add("is-doc");
       if (opened.has(b.id)) el.open = true;
       el.addEventListener("toggle", ()=> el.open ? opened.add(b.id) : opened.delete(b.id));
       el.innerHTML = `<summary><span class="num">${n}</span>
         <span class="ttl">${b.ten}<span>${DA_DUNG[b.id] ? `<b class="dung">🎬 Đã dựng clip · ${DA_DUNG[b.id]}</b>` : L("open")}</span></span>
-        <span class="chk">${isDone(b.id) ? L("done") : L("notyet")}</span></summary>
+        <span class="chk">${DA_DOC.has(b.id) ? (EN ? "✓ Recorded" : "✓ Đã quay") : (isDone(b.id) ? L("done") : L("notyet"))}</span></summary>
         <div class="cols"><div class="blk"><div class="lab">${L("read")}${SUA[b.id] ? ` <span class="dasua">${L("edited")}</span>` : ""}</div>${b.ghi ? `<p class="ghi">${b.ghi}</p>` : ""}<div class="doc">${SUA[b.id] ? SUA[b.id].map(t=>`<p>${esc(t)}</p>`).join("") : b.rows.map(r=>`<p>${r[0]}</p>`).join("")}</div><div class="suabtn"><button type="button" class="bsua">${L("edit")}</button>${SUA[b.id] ? `<button type="button" class="bgoc">${L("orig")}</button>` : ""}</div></div>
         <div class="blk"><div class="lab">${L("film")}</div><p>${b.vay}</p>${b.mau ? `<a class="mau" href="${b.mau}" target="_blank" rel="noopener">Xem clip mẫu ↗</a>` : ""}</div>
         <div class="blk"><div class="lab">${L("send")}</div>
