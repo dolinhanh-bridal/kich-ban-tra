@@ -84,7 +84,7 @@ details.is-done .chk{color:var(--done);font-weight:600}
 .suabtn button.chinh{background:var(--accent);color:var(--card)}
 .ta{width:100%;box-sizing:border-box;font:inherit;line-height:1.5;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);min-height:300px}
 @media (prefers-color-scheme:dark){.ghi{background:#3a2422;color:#ffb4ab}.dasua{color:#ffb4ab}}
-</style>
+.pz{color:#c0392b;font-weight:700;margin:0 .15em}.pz2{margin:0 .25em}.pzlg{font-size:.9em;margin:.4em 0;color:#555}</style>
 </head><body>
 
 
@@ -380,6 +380,9 @@ function docSua(){ try { return JSON.parse(localStorage.getItem(SUA_KEY) || "{}"
 function ghiSua(o){ try { localStorage.setItem(SUA_KEY, JSON.stringify(o)); } catch(e) {} }
 const esc = t => String(t).replace(/[&<>"]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
+let NGHI = false;
+function nghi(t){ if (!NGHI || t.includes("<")) return t;
+  return t.replace(/(…|,|;|:)\s+|\s[–—]\s|([.?!]["”’]?)\s+(?=\S)/g, (m,a,b)=> b ? b+' <span class="pz pz2">//</span> ' : (m.includes("–")||m.includes("—") ? ' <span class="pz">/</span> ' : a+' <span class="pz">/</span> ')); }
 function render(){
   const host = document.getElementById("days"); host.innerHTML = ""; const SUA = docSua();
   for (let d = 0; d < Math.ceil(TOTAL/PER_DAY); d++){
@@ -399,7 +402,7 @@ function render(){
       el.innerHTML = `<summary><span class="num">${n}</span>
         <span class="ttl">${b.ten}<span>${DA_DUNG[b.id] ? `<b class="dung">🎬 Đã dựng clip · ${DA_DUNG[b.id]}</b>` : L("open")}</span></span>
         <span class="chk">${DA_DOC.has(b.id) ? (EN ? "✓ Recorded" : "✓ Đã quay") : (isDone(b.id) ? L("done") : L("notyet"))}</span></summary>
-        <div class="cols"><div class="blk"><div class="lab">${L("read")}${SUA[b.id] ? ` <span class="dasua">${L("edited")}</span>` : ""}</div>${b.ghi ? `<p class="ghi">${b.ghi}</p>` : ""}<div class="doc">${SUA[b.id] ? SUA[b.id].map(t=>`<p>${esc(t)}</p>`).join("") : b.rows.map(r=>`<p>${r[0]}</p>`).join("")}</div><div class="suabtn"><button type="button" class="bsua">${L("edit")}</button>${SUA[b.id] ? `<button type="button" class="bgoc">${L("orig")}</button>` : ""}</div></div>
+        <div class="cols"><div class="blk"><div class="lab">${L("read")}${SUA[b.id] ? ` <span class="dasua">${L("edited")}</span>` : ""}</div>${b.ghi ? `<p class="ghi">${b.ghi}</p>` : ""}${NGHI ? `<p class="pzlg"><span class="pz">/</span> nghỉ ngắn lấy hơi · <span class="pz pz2">//</span> nghỉ dài (hết câu)</p>` : ""}<div class="doc">${SUA[b.id] ? SUA[b.id].map(t=>`<p>${esc(t)}</p>`).join("") : b.rows.map(r=>`<p>${nghi(r[0])}</p>`).join("")}</div><div class="suabtn"><button type="button" class="bsua">${L("edit")}</button>${SUA[b.id] ? `<button type="button" class="bgoc">${L("orig")}</button>` : ""}</div></div>
         <div class="blk"><div class="lab">${L("film")}</div><p>${b.vay}</p>${b.mau ? `<a class="mau" href="${b.mau}" target="_blank" rel="noopener">Xem clip mẫu ↗</a>` : ""}</div>
         <div class="blk"><div class="lab">${L("send")}</div>
           <p class="fname">${L("fname")} <b>${n} ${b.ten.replace(/[?“”…]/g,"")}</b></p>
@@ -441,7 +444,7 @@ function save(id, val){
 
 function moTab(t){
   const c = TAB[t] || TAB.tra; t = TAB[t] ? t : "tra";
-  CUR = c.bai; TOTAL = CUR.length; FOLDER = c.folder; KEY = c.key; EN = !!c.en; document.documentElement.lang = EN ? "en" : "vi";
+  CUR = c.bai; TOTAL = CUR.length; FOLDER = c.folder; KEY = c.key; EN = !!c.en; NGHI = ["phuong","phuongnu","ena"].includes(t); document.documentElement.lang = EN ? "en" : "vi";
   if (!TIPS_VI) TIPS_VI = document.getElementById("tips").innerHTML;
   document.getElementById("tips").innerHTML = EN ? TIPS_EN : TIPS_VI;
   document.getElementById("pLab").textContent = EN ? "Videos sent" : "Đã gửi source";
