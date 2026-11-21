@@ -93,7 +93,7 @@ details.is-done .chk{color:var(--done);font-weight:600}
     <h1 id="h1">Kịch bản Trà đọc</h1>
     <p class="sub" id="sub">Clip người nói @fitting.vay.cuoi · tiếng Việt</p>
   </header>
-  <nav class="tabs" role="tablist"><button type="button" id="tab-tra" data-tab="tra">Trà · tiếng Việt</button><button type="button" id="tab-ena" data-tab="ena">Phương · EN (bộ 2)</button><button type="button" id="tab-enb" data-tab="enb">Jwa · EN</button></nav>
+  <nav class="tabs" role="tablist"><button type="button" id="tab-tra" data-tab="tra">Trà · tiếng Việt</button><button type="button" id="tab-ena" data-tab="ena">Anna · EN</button><button type="button" id="tab-enb" data-tab="enb">Jwa · EN</button></nav>
 
   <div class="prog">
     <div><span id="pLab">Đã gửi source</span> <b id="pDone">0</b> / <b id="pTotal">–</b> <span id="pBai">bài</span></div>
@@ -358,7 +358,7 @@ let CUR = BAI, TOTAL = BAI.length;
 
 const TAB = {
   tra: { bai: BAI, folder: "https://drive.google.com/drive/folders/1RnvuQurSwRz4LIJlp2gNhc2iW68w-J7P", key: "tra-st", h1: "Kịch bản Trà đọc", sub: "Clip người nói @fitting.vay.cuoi · tiếng Việt", doc: "câu đầu là câu mở, đọc như đang hỏi khách · <i>“:))” là chỗ mỉm cười nhẹ, không đọc thành tiếng</i>.", ten: "số bài + tên bài <i>(vd: 01 Ship ve tinh)</i>." },
-  ena: { en: true, bai: BAI_A, folder: "https://drive.google.com/drive/folders/16UnMWjI0mBkbpFyXm3i5LMzWcvHb9F4u", key: "tra-st-ena", h1: "Scripts · Phương (set 2)", sub: "Talking video · English · Dolinhanh Bridal wedding gowns", doc: "Read slowly and naturally – no need for a perfect accent. <i>The last line of each script is the call to action: say it warmly, smiling at the camera.</i> <b>Record each script as one video, then upload it to Google Drive (button in each script) and tick “Sent”.</b>", ten: "script number + title <i>(e.g. 01 Beading)</i>." },
+  ena: { en: true, bai: BAI_A, folder: "https://drive.google.com/drive/folders/16UnMWjI0mBkbpFyXm3i5LMzWcvHb9F4u", key: "tra-st-ena", h1: "Scripts · Anna (set 2)", sub: "Talking video · English · Dolinhanh Bridal wedding gowns", doc: "Read slowly and naturally – no need for a perfect accent. <i>The last line of each script is the call to action: say it warmly, smiling at the camera.</i> <b>Record each script as one video, then upload it to Google Drive (button in each script) and tick “Sent”.</b>", ten: "script number + title <i>(e.g. 01 Beading)</i>." },
   enb: { en: true, bai: BAI_B, folder: "https://drive.google.com/drive/folders/1DJuJ05NO5XwYFwbmzZGZbCX4Px3CkSV5", key: "tra-st-enb", h1: "Scripts · Jwa", sub: "Talking video · English · Dolinhanh Bridal wedding gowns", doc: "Read slowly and naturally – no need for a perfect accent. <i>The last line of each script is the call to action: say it warmly, smiling at the camera.</i> <b>Record each script as one video, then upload it to Google Drive (button in each script) and tick “Sent”.</b>", ten: "script number + title <i>(e.g. 01 White or ivory)</i>." },
 };
 let FOLDER = TAB.tra.folder, KEY = "tra-st", EN = false;
@@ -457,10 +457,10 @@ function moTab(t){
   render();
 }
 document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => {
-  try { history.replaceState(null, "", b.dataset.tab === "tra" ? location.pathname : ({ena:"#phuong-en2", enb:"#jwa"}[b.dataset.tab] || "#phuong-en2")); } catch(e) {}
+  try { history.replaceState(null, "", b.dataset.tab === "tra" ? location.pathname : ({ena:"#anna-en", enb:"#jwa"}[b.dataset.tab] || "#anna-en")); } catch(e) {}
   moTab(b.dataset.tab);
 }));
-moTab({"#en-a":"ena","#en-b":"enb","#phuong-en2":"ena","#jwa":"enb"}[location.hash] || "tra");
+moTab({"#en-a":"ena","#en-b":"enb","#anna-en":"ena","#jwa":"enb"}[location.hash] || "tra");
 </script>
 
 </body></html>
